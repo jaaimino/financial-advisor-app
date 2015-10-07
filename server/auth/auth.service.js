@@ -15,24 +15,33 @@ var validateJwt = expressJwt({ secret: config.secrets.session });
  */
 function isAuthenticated() {
   return compose()
-    // Validate jwt
-    .use(function(req, res, next) {
-      // allow access_token to be passed through query parameter as well
-      if(req.query && req.query.hasOwnProperty('access_token')) {
-        req.headers.authorization = 'Bearer ' + req.query.access_token;
-      }
-      validateJwt(req, res, next);
-    })
-    // Attach user to request
-    .use(function(req, res, next) {
-      User.findById(req.user._id, function (err, user) {
-        if (err) return next(err);
-        if (!user) return res.status(401).send('Unauthorized');
-
-        req.user = user;
-        next();
+      .use(normalizeToken)
+      // Validate jwt
+      .use(function (req, res, next) {
+          validateJwt(req, res, function(){
+            next();
+          });
+      })
+      // Attach user to request
+      .use(function (req, res, next) {
+          if (req.user && req.user._id) {
+            User.findById(req.user._id, function (err, user) {
+                if (err) return next(err);
+                if (!user) return res.send(401);
+                req.user = user;
+                next();
+            });
+          } else {
+              return res.send(401);
+          }
       });
-    });
+}
+
+function normalizeToken(req, res, next) {
+    if (req.query && req.query.hasOwnProperty('access_token')) {
+        req.headers.authorization = 'Bearer ' + req.query.access_token;
+    }
+    next();
 }
 
 /**
