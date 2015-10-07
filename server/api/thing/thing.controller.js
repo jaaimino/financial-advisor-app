@@ -11,6 +11,9 @@
 
 var _ = require('lodash');
 var Thing = require('./thing.model');
+var passport = require('passport');
+var config = require('../../config/environment');
+var jwt = require('jsonwebtoken');
 
 // Get list of things
 exports.index = function(req, res) {
