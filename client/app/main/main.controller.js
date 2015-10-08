@@ -1,8 +1,11 @@
 'use strict';
 
 angular.module('emoneyAdviseApp')
-  .controller('MainCtrl', function ($scope, $http) {
+  .controller('MainCtrl', function ($scope, $http, Auth) {
     $scope.awesomeThings = [];
+
+    $scope.getCurrentUser = Auth.getCurrentUser;
+    console.log($scope.getCurrentUser());
 
     $http.get('/api/things').success(function(awesomeThings) {
       $scope.awesomeThings = awesomeThings;

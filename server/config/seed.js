@@ -7,6 +7,7 @@
 
 var Thing = require('../api/thing/thing.model');
 var User = require('../api/user/user.model');
+var Client = require('../api/client/client.model');
 
 Thing.find({}).remove(function() {
   Thing.create({
@@ -30,12 +31,21 @@ Thing.find({}).remove(function() {
   });
 });
 
+var jacob = new Client({name: 'Jacob A'});
+jacob.save();
+
+/*
+Client.find({}).remove(function(){
+});
+*/
+
 User.find({}).remove(function() {
   User.create({
     provider: 'local',
     name: 'Test User',
     email: 'test@test.com',
-    password: 'test'
+    password: 'test',
+    clients: [jacob._id]
   }, {
     provider: 'local',
     role: 'admin',

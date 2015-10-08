@@ -13,7 +13,8 @@ var UserSchema = new Schema({
   },
   hashedPassword: String,
   provider: String,
-  salt: String
+  salt: String,
+  clients: [{type: Schema.ObjectId, ref: 'Client'}]
 });
 
 /**
