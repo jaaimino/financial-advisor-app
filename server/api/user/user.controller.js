@@ -15,6 +15,7 @@ var validationError = function(res, err) {
  */
 exports.index = function(req, res) {
   User.find({}, '-salt -hashedPassword', function (err, users) {
+  }).populate('clients').exec(function(err, users){
     if(err) return res.status(500).send(err);
     res.status(200).json(users);
   });
@@ -41,9 +42,11 @@ exports.show = function (req, res, next) {
   var userId = req.params.id;
 
   User.findById(userId, function (err, user) {
+
+  }).populate('clients').exec(function(err, users){
     if (err) return next(err);
-    if (!user) return res.status(401).send('Unauthorized');
-    res.json(user.profile);
+    if (!users) return res.status(401).send('Unauthorized');
+    res.json(users[0].profile);
   });
 };
 
@@ -87,9 +90,10 @@ exports.me = function(req, res, next) {
   User.findOne({
     _id: userId
   }, '-salt -hashedPassword', function(err, user) { // don't ever give out the password or salt
+  }).populate('clients').exec(function(err, users){ //For some reason turns into an array of users
     if (err) return next(err);
-    if (!user) return res.status(401).send('Unauthorized');
-    res.json(user);
+    if (!users) return res.status(401).send('Unauthorized');
+    res.json(users[0]);
   });
 };
 
