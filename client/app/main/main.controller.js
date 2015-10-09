@@ -5,7 +5,7 @@ angular.module('emoneyAdviseApp')
     $scope.awesomeThings = [];
 
     $scope.getCurrentUser = Auth.getCurrentUser;
-    console.log($scope.getCurrentUser());
+    //console.log($scope.getCurrentUser());
 
     $http.get('/api/things').success(function(awesomeThings) {
       $scope.awesomeThings = awesomeThings;

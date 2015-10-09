@@ -31,9 +31,10 @@ Thing.find({}).remove(function() {
   });
 });
 
-var jacob = new Client({name: 'Jacob A'});
-jacob.save();
-
+var johndoe = new Client({name: 'John Doe'});
+johndoe.save();
+var janedoe = new Client({name: 'Jane Doe'});
+janedoe.save();
 /*
 Client.find({}).remove(function(){
 });
@@ -45,7 +46,7 @@ User.find({}).remove(function() {
     name: 'Test User',
     email: 'test@test.com',
     password: 'test',
-    clients: [jacob._id]
+    clients: [johndoe._id, janedoe._id]
   }, {
     provider: 'local',
     role: 'admin',

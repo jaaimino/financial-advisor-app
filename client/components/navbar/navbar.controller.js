@@ -5,6 +5,10 @@ angular.module('emoneyAdviseApp')
     $scope.menu = [{
       'title': 'Home',
       'link': '/'
+    },
+    {
+      'title': 'My Clients',
+      'link': '/myclients'
     }];
 
     $scope.isCollapsed = true;
