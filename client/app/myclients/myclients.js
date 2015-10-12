@@ -6,6 +6,7 @@ angular.module('emoneyAdviseApp')
       .state('myclients', {
         url: '/myclients',
         templateUrl: 'app/myclients/myclients.html',
-        controller: 'MyClientsCtrl'
+        controller: 'MyClientsCtrl',
+        authenticate: true
       });
   });
