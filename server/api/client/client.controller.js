@@ -2,6 +2,7 @@
 
 var _ = require('lodash');
 var Client = require('./client.model');
+var Account = require('../account/account.model');
 var passport = require('passport');
 var config = require('../../config/environment');
 var jwt = require('jsonwebtoken');
@@ -29,6 +30,17 @@ exports.myclient = function(req, res) {
   Client.findOne({_id: req.params.id, advisor: userId}, function (err, clients) {
     if(err) { return handleError(res, err); }
     return res.status(200).json(clients);
+  });
+};
+
+// Get accounts for single client for an advisor
+exports.clientaccounts = function(req, res) {
+  var userId = req.user._id;
+  Client.findOne({advisor: userId}, function (err, client) {
+    Account.find({client: client._id}, function(err, accounts){
+      if(err) { return handleError(res, err); }
+      return res.status(200).json(accounts);
+    });
   });
 };
 

@@ -7,6 +7,7 @@
 
 var User = require('../api/user/user.model');
 var Client = require('../api/client/client.model');
+var Account = require('../api/account/account.model');
 
 User.remove({}, function(){});
 Client.remove({}, function(){});
@@ -27,6 +28,9 @@ var jamesdoe = new Client({name: 'James Doe', email: 'jamesdoe@gmail.com', advis
 jamesdoe.save();
 var susandoe = new Client({name: 'Susan Doe', email: 'susandoe@gmail.com', advisor: user._id});
 susandoe.save();
+
+var johndoeaccount1 = new Account({name: 'My Super Cool Account', client: johndoe._id});
+johndoeaccount1.save();
 
 var admin = new User({
     provider: 'local',
