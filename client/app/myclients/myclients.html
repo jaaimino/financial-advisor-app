@@ -23,7 +23,7 @@
           </div> <br/>
               <ul class="list-group">
                 <li class="list-group-item" ng-repeat="client in clients | filter:asyncSelected | orderBy: 'name'">
-                    <a href="#">
+                    <a href="/myclients/{{client._id}}">
                     <h4><strong>{{client.name}}</strong> 
                     <span class="text-muted">{{client.email}}</span>
                     </h4>

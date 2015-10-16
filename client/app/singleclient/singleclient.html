@@ -3,28 +3,18 @@
 <div class="container">
   <div class="row">
     <div class="col-md-12">
-        <div class="row">
+      <div class="row">
         <div class="col-md-8 col-md-offset-2">
-          <h1>Client: </h1>
-          </div>
+          <h1><strong>{{client.name}}</strong> <h4 class="text-muted">{{client.email}}</h4></h1>
+        </div>
       </div>
       <div class="row">
-          <div class="col-md-8 col-md-offset-2">
-          <h1 data-model="message">{{message}}</h1>
-          <!--<pre>Model: {{asyncSelected | json}}</pre>-->
-              <ul class="list-group">
-                <li class="list-group-item" ng-repeat="client in clients | filter:asyncSelected | orderBy: 'name'">
-                    <a href="#">
-                    <h4><strong>{{client.name}}</strong> 
-                    <span class="text-muted">{{client.email}}</span>
-                    </h4>
-                    </a>
-                    <p class="">Added: {{client.added}}</p>
-                    <!-- Can't actually delete clients. Will be able to transfer later -->
-                    <!-- <a ng-click="openModal()" class="trash"><span class="glyphicon glyphicon-trash pull-right"></span></a> -->
-                </li>
-            </ul>
-          </div>
+        <div class="col-md-8 col-md-offset-2">
+          </h4>
+          <p class="">Added: {{client.added}}</p>
+          <!-- Can't actually delete clients. Will be able to transfer later -->
+          <!-- <a ng-click="openModal()" class="trash"><span class="glyphicon glyphicon-trash pull-right"></span></a> -->
+        </div>
       </div>
       <div class="row">
         <div class="col-md-8 col-md-offset-2 text-center">
