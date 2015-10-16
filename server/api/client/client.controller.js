@@ -23,6 +23,15 @@ exports.myclients = function(req, res) {
   });
 };
 
+// Get single client for an advisor
+exports.myclient = function(req, res) {
+  var userId = req.user._id;
+  Client.find({_id: req.params.id, advisor: userId}, function (err, clients) {
+    if(err) { return handleError(res, err); }
+    return res.status(200).json(clients);
+  });
+};
+
 // Get a single client
 exports.show = function(req, res) {
   Client.findById(req.params.id, function (err, client) {
