@@ -5,8 +5,11 @@ angular.module('emoneyAdviseApp')
 
     // Use the User $resource to fetch all users
     $scope.getCurrentUser = Auth.getCurrentUser;
+    $scope.clients = [];
 
-    $scope.clients = Auth.getCurrentUser().clients;
+    $http.get('/api/clients/myclients').success(function(clients) {
+      $scope.clients = clients;
+    });
 
     $scope.setPage = function (pageNo) {
       $scope.currentPage = pageNo;
@@ -17,7 +20,7 @@ angular.module('emoneyAdviseApp')
     };
 
     $scope.maxSize = 5;
-    $scope.bigTotalItems = 256;
+    $scope.bigTotalItems = $scope.clients.length;
     $scope.bigCurrentPage = 1;
 
     $scope.selected = undefined;
