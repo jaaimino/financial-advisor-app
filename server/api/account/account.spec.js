@@ -4,8 +4,8 @@ var should = require('should');
 var app = require('../../app');
 var request = require('supertest');
 
+/*
 describe('GET /api/accounts', function() {
-
   it('should respond with JSON array', function(done) {
     request(app)
       .get('/api/accounts')
@@ -18,3 +18,4 @@ describe('GET /api/accounts', function() {
       });
   });
 });
+*/

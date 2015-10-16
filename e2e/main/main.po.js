@@ -4,7 +4,7 @@
  */
 
 'use strict';
-
+/*
 var MainPage = function() {
   this.heroEl = element(by.css('.hero-unit'));
   this.h1El = this.heroEl.element(by.css('h1'));
@@ -12,4 +12,5 @@ var MainPage = function() {
 };
 
 module.exports = new MainPage();
+*/
 

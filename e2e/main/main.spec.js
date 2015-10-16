@@ -1,5 +1,5 @@
 'use strict';
-
+/*
 describe('Main View', function() {
   var page;
 
@@ -14,3 +14,4 @@ describe('Main View', function() {
     expect(page.imgEl.getAttribute('alt')).toBe('I\'m Yeoman');
   });
 });
+*/
