@@ -2,7 +2,7 @@
 
 <header class="jumbotron text-center" id="banner">
   <div class="container">
-    <h1>Welcome</h1>
+    <h1>Welcome, {{getCurrentUser().name}}</h1>
     <p class="lead">To the Emoney Financial Advisor Application</p>
   </div>
 </header>
@@ -12,12 +12,17 @@
     <div class="col-lg-12">
       <div class="row">
         <div class="col-md-8 col-md-offset-2">
-          <h1 class="page-header" style="margin-top:50px;">Client Overview:</h1>
-          <h3 class="" style="margin-top:50px;">Active Clients:</h3>
+          <h1 class="page-header">Client Overview:</h1>
+          <h3 class="">Active Clients:</h3>
           <canvas id="line" class="chart chart-line" chart-data="data"
             chart-labels="labels" chart-legend="true" chart-series="series"
             chart-click="onClick" >
           </canvas>
+        </div>
+        <div class="row">
+          <div class="col-md-8 col-md-offset-2 text-center">
+            <a class="btn btn-primary btn-lg" href="/myclients">View Clients</a>
+          </div>
         </div>
       </div>
       <!-- Another row

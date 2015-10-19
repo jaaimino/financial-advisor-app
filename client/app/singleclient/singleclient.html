@@ -18,7 +18,7 @@
               <li class="list-group-item" ng-repeat="account in accounts | filter:asyncSelected | orderBy: 'name'">
                   <a href="#">
                     <h4><strong>{{account.name}}</strong> 
-                    <span class="text-muted">{{account.email}}</span>
+                    <span class="text-muted">#{{account.account_number}}</span>
                     </h4>
                   </a>
               </li>

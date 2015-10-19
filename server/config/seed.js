@@ -14,7 +14,7 @@ Client.remove({}, function(){});
 
 var user = new User({
     provider: 'local',
-    name: 'Test User',
+    name: 'Test McTest',
     email: 'test@test.com',
     password: 'test'
 });
@@ -29,8 +29,18 @@ jamesdoe.save();
 var susandoe = new Client({name: 'Susan Doe', email: 'susandoe@gmail.com', advisor: user._id});
 susandoe.save();
 
-var johndoeaccount1 = new Account({name: 'My Super Cool Account', client: johndoe._id});
+var johndoeaccount1 = new Account({
+    name: 'My Super Cool Account', 
+    client: johndoe._id, 
+    account_number: 123
+});
 johndoeaccount1.save();
+var johndoeaccount2 = new Account({
+    name: 'My Slightly Less Cool Account', 
+    client: johndoe._id,
+    account_number: 124
+});
+johndoeaccount2.save();
 
 var admin = new User({
     provider: 'local',
