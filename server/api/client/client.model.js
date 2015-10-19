@@ -1,3 +1,6 @@
+/*
+ * Model for client
+ */
 'use strict';
 
 var mongoose = require('mongoose'),

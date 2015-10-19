@@ -30,17 +30,10 @@ var susandoe = new Client({name: 'Susan Doe', email: 'susandoe@gmail.com', advis
 susandoe.save();
 
 var johndoeaccount1 = new Account({
-    name: 'My Super Cool Account', 
-    client: johndoe._id, 
-    account_number: 123
+    name: 'Fake Emoney Site ;)', 
+    client: johndoe._id
 });
 johndoeaccount1.save();
-var johndoeaccount2 = new Account({
-    name: 'My Slightly Less Cool Account', 
-    client: johndoe._id,
-    account_number: 124
-});
-johndoeaccount2.save();
 
 var admin = new User({
     provider: 'local',

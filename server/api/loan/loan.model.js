@@ -4,6 +4,7 @@ var mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 
 var LoanSchema = new Schema({
+    account: Schema.ObjectId,
     name            : { type: String, required: true },
     account_number  : { type: String, required: true },
     description     : { type: String, required: false },
