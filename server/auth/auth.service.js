@@ -27,12 +27,12 @@ function isAuthenticated() {
           if (req.user && req.user._id) {
             User.findById(req.user._id, function (err, user) {
                 if (err) return next(err);
-                if (!user) return res.send(401);
+                if (!user) return res.status(401).end();
                 req.user = user;
                 next();
             });
           } else {
-              return res.send(401);
+              return res.status(401).end();
           }
       });
 }
