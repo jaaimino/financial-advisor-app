@@ -44,6 +44,18 @@ exports.clientaccounts = function(req, res) {
   });
 };
 
+// Get accounts for single client for an advisor
+exports.clientaccount = function(req, res) {
+  var userId = req.user._id;
+  var accountId = req.params.accid;
+  Client.findOne({advisor: userId}, function (err, client) {
+    Account.findOne({_id: accountId, client: client._id}, function(err, account){
+      if(err) { return handleError(res, err); }
+      return res.status(200).json(account);
+    });
+  });
+};
+
 // Get a single client
 exports.show = function(req, res) {
   Client.findById(req.params.id, function (err, client) {

@@ -1,16 +1,16 @@
 'use strict';
 
-describe('Controller: SingleclientCtrl', function () {
+describe('Controller: SingleaccountCtrl', function () {
 
   // load the controller's module
   beforeEach(module('emoneyAdviseApp'));
 
-  var SingleclientCtrl, scope;
+  var SingleaccountCtrl, scope;
 
   // Initialize the controller and a mock scope
   beforeEach(inject(function ($controller, $rootScope) {
     scope = $rootScope.$new();
-    SingleclientCtrl = $controller('SingleClientCtrl', {
+    SingleaccountCtrl = $controller('SingleAccountCtrl', {
       $scope: scope
     });
   }));

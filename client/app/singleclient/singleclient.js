@@ -6,6 +6,6 @@ angular.module('emoneyAdviseApp')
       .state('singleclient', {
         url: '/myclients/:id',
         templateUrl: 'app/singleclient/singleclient.html',
-        controller: 'SingleclientCtrl'
+        controller: 'SingleClientCtrl'
       });
   });

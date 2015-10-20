@@ -11,7 +11,7 @@ router.get('/', auth.hasRole('admin'), controller.index);
 router.get('/myclients', auth.isAuthenticated(), controller.myclients);
 router.get('/myclients/:id', auth.isAuthenticated(), controller.myclient);
 router.get('/myclients/:id/accounts', auth.isAuthenticated(), controller.clientaccounts );
-router.get('/myclients/:id/accounts/:accid', auth.isAuthenticated(), controller.index);
+router.get('/myclients/:id/account/:accid', auth.isAuthenticated(), controller.clientaccount);
 router.get('/:id', auth.isAuthenticated(), controller.show);
 router.post('/', auth.isAuthenticated(), controller.create);
 router.put('/:id', auth.isAuthenticated(), controller.update);

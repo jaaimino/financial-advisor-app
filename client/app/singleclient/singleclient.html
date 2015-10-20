@@ -16,7 +16,7 @@
           <h3>Accounts:</h3>
           <ul class="list-group">
               <li class="list-group-item" ng-repeat="account in accounts | filter:asyncSelected | orderBy: 'name'">
-                  <a href="#">
+                  <a href="/myclients/{{client._id}}/account/{{account._id}}">
                     <h4><strong>{{account.name}}</strong> 
                     <!--<span class="text-muted">#{{account.account_number}}</span>-->
                     </h4>

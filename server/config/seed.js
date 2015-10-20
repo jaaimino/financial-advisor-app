@@ -30,7 +30,8 @@ var susandoe = new Client({name: 'Susan Doe', email: 'susandoe@gmail.com', advis
 susandoe.save();
 
 var johndoeaccount1 = new Account({
-    name: 'Fake Emoney Site ;)', 
+    name: 'Fake Emoney Site ;)',
+    description: 'My fake eMoney bank account for testing!',
     client: johndoe._id
 });
 johndoeaccount1.save();
