@@ -11,6 +11,7 @@ var Account = require('../api/account/account.model');
 
 User.remove({}, function(){});
 Client.remove({}, function(){});
+Account.remove({}, function(){});
 
 var user = new User({
     provider: 'local',
