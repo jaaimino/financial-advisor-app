@@ -36,11 +36,13 @@ exports.myclient = function(req, res) {
 // Get accounts for single client for an advisor
 exports.clientaccounts = function(req, res) {
   var userId = req.user._id;
-  Client.findOne({advisor: userId}, function (err, client) {
-    Account.find({client: client._id}, function(err, accounts){
+  Client.findOne({_id: req.params.id, advisor: userId}, function (err, client) {
       if(err) { return handleError(res, err); }
-      return res.status(200).json(accounts);
-    });
+      var clientId = client._id;
+      Account.find({client: clientId}, function(err, accounts){
+        if(err) { return handleError(res, err); }
+        return res.status(200).json(accounts);
+      });
   });
 };
 
@@ -48,7 +50,7 @@ exports.clientaccounts = function(req, res) {
 exports.clientaccount = function(req, res) {
   var userId = req.user._id;
   var accountId = req.params.accid;
-  Client.findOne({advisor: userId}, function (err, client) {
+  Client.findOne({_id: req.params.id, advisor: userId}, function (err, client) {
     Account.findOne({_id: accountId, client: client._id}, function(err, account){
       if(err) { return handleError(res, err); }
       return res.status(200).json(account);

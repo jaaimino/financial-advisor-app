@@ -10,8 +10,32 @@
       </div>
       <div class="row">
         <div class="col-md-8 col-md-offset-2">
+          <h3>Description</h3>
           <p>{{account.description}}</p>
+          <h3>Overview</h3>
+          <p>Total Cash Balance: <span ng-if="!client.total_cash_balance">N/A</span></p>
+          <p>Total Liability: <span ng-if="!client.total_cash_balance">N/A</span></p>
+          <p>Total Holdings Balance: <span ng-if="!client.total_cash_balance">N/A</span></p>
         </div>
+      </div>
+      <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+          <!-- Can't actually delete clients. Will be able to transfer later -->
+          <!-- <a ng-click="openModal()" class="trash"><span class="glyphicon glyphicon-trash pull-right"></span></a> -->
+          <h3>Sub Accounts:</h3>
+          <div ng-if="accounts.length < 1">
+            <div class="alert alert-danger" role="alert">No sub accounts found!</div>
+          </div>
+          <ul class="list-group">
+              <li class="list-group-item" ng-repeat="account in accounts | filter:asyncSelected | orderBy: 'name'">
+                  <a href="/myclients/{{client._id}}/account/{{account._id}}">
+                    <h4><strong>{{account.name}}</strong> 
+                    <!--<span class="text-muted">#{{account.account_number}}</span>-->
+                    </h4>
+                  </a>
+              </li>
+          </ul>
+        </div>  
       </div>
       <div class="row">
         <div class="col-md-8 col-md-offset-2 text-center">

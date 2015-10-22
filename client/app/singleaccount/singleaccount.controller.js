@@ -5,11 +5,14 @@ angular.module('emoneyAdviseApp')
     var clientId = $stateParams.id;
     var accountId = $stateParams.accid;
     $scope.client = {};
+    $scope.account = {};
+    $scope.accounts = [];
+
     $http.get('/api/clients/myclients/' + clientId).success(function(client) {
       $scope.client = client;
     });
+
     $http.get('/api/clients/myclients/' + clientId + '/account/' + accountId).success(function(account) {
-        console.log(account);
       $scope.account = account;
     });
   });
