@@ -13,13 +13,38 @@ User.remove({}, function(){});
 Client.remove({}, function(){});
 Account.remove({}, function(){});
 
+
+
+var firstNames = ["James", "John", "Jimmy", "Gerald", "Susan", "Charlotte", "Joseph", "Jacqueline", "Anne"];
+var lastNames = ["Waverly", "Smith", "Ford", "Fields", "Smithers", "Vanderbilt"];
+
+var randomFirstName = firstNames[Math.floor(Math.random()*firstNames.length)];
+var randomLastName = lastNames[Math.floor(Math.random()*lastNames.length)];
+
 var user = new User({
     provider: 'local',
-    name: 'Test McTest',
+    name: randomFirstName+" "+randomLastName,
     email: 'test@test.com',
     password: 'test'
 });
 user.save();
+
+//Generate a bunch of random people to add as clients
+for(var i=0;i<8;i++){
+    var randomFirstName = firstNames[Math.floor(Math.random()*firstNames.length)];
+    var randomLastName = lastNames[Math.floor(Math.random()*lastNames.length)];
+    var someName = randomFirstName + " " + randomLastName;
+    var someEmail = randomFirstName + randomLastName + "@gmail.com";
+    someEmail = someEmail.toLowerCase();
+    var someClient = new Client({
+        advisor: user._id,
+        description: 'I\'m a randomly generated client!',
+        name: someName,
+        email: someEmail
+    });
+    someClient.save();
+    //console.log(someClient);
+}
 
 var johndoe = new Client({
     name: 'John Doe', 

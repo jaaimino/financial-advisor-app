@@ -5,7 +5,7 @@
     <div class="col-md-12">
       <div class="row">
         <div class="col-md-8 col-md-offset-2">
-          <h1><strong>{{client.name}}</strong> <h4 class="text-muted">{{client.email}}</h4></h1>
+          <h1 class="page-title"><strong>{{client.name}}</strong></h1>
         </div>
       </div>
       <div class="row">
@@ -15,7 +15,12 @@
             {{client.description}}
             <span ng-if="!client.description">No description provided.</span>
           </p>
-          <h3>Overview</h3>
+          <h3>Contact</h3>
+          <h4>Phone</h4>
+          <span ng-if="!client.phone">N/A</span>
+          <h4>Email</h4>
+          <p>{{client.email}}</p>
+          <h3>Accounts Overview</h3>
           <p>Client Since: {{client.added}}</p>
           <p>Total Cash Balance: <span ng-if="!client.total_cash_balance">N/A</span></p>
           <p>Total Liability: <span ng-if="!client.total_cash_balance">N/A</span></p>
@@ -25,7 +30,7 @@
       <div class="row">
         <div class="col-md-8 col-md-offset-2">
           <!-- <a ng-click="openModal()" class="trash"><span class="glyphicon glyphicon-trash pull-right"></span></a> -->
-          <h3>Accounts:</h3>
+          <h3>Accounts</h3>
           <div ng-if="accounts.length < 1">
             <div class="alert alert-danger" role="alert">No accounts found!</div>
           </div>
