@@ -1,6 +1,5 @@
 # Financial Advisor App #
 [![Build Status](https://travis-ci.org/jaaimino/financial-advisor-app.svg?branch=master)](https://travis-ci.org/jaaimino/financial-advisor-app)
-### CI Provided by Travis CI ###
 
 This repo is for the app side of the financial advisor app project for my final software engineering
 course at UD.
@@ -18,3 +17,5 @@ course at UD.
 ### Contribution guidelines ###
 
 * Contact Jacob Aimino
+
+### CI Provided by Travis CI ###
