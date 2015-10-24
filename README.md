@@ -4,19 +4,20 @@
 This repo is for the app side of the financial advisor app project for my final software engineering
 course at UD.
 
-### How do I get set up? ###
+### What do I need? ###
+* NodeJS
+* MongoDB
+* Grunt: `npm install -g grunt-cli`
 
-* Install NodeJS
-* Install MongoDB
-* Start MongoDB
-* Navigate to repo and run "npm install" and also "bower install"
-* Install grunt by running "npm install -g grunt-cli"
-* run "grunt serve" to preview
-* run "grunt test" to run tests
+## Build & Development ##
+Make sure mongodb is running
 
-### Contribution guidelines ###
+Run `npm install` and `bower install`
 
-* Contact Jacob Aimino
+Run `grunt serve` to preview
+
+### Testing ###
+Running `grunt test` will run the unit tests with karma.
 
 ### Also See ###
 [Financial Advisor Scraper](https://github.com/jaaimino/financial-advisor-scraper)
