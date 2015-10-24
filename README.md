@@ -1,6 +1,8 @@
-# eMoney Advisor App #
+# Financial Advisor App #
+[![Build Status](https://travis-ci.org/jaaimino/financial-advisor-app.svg?branch=master)](https://travis-ci.org/jaaimino/financial-advisor-app)
 
-This repo is for the app side of the eMoney advisor scraper project.
+This repo is for the app side of the financial advisor app project for my final software engineering
+course at UD.
 
 ### How do I get set up? ###
 
@@ -15,3 +17,6 @@ This repo is for the app side of the eMoney advisor scraper project.
 ### Contribution guidelines ###
 
 * Contact Jacob Aimino
+
+### Also See ###
+[Financial Advisor Scraper](https://github.com/jaaimino/financial-advisor-scraper)
