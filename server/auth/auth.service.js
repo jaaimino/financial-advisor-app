@@ -17,7 +17,7 @@ var validateJwt = expressJwt({ secret: config.secrets.session });
  * Attaches the user object to the request if authenticated
  * Otherwise returns 403
  */
-exports.isAuthenticated = function() {
+function isAuthenticated() {
   return compose()
       .use(normalizeToken)
       // Validate jwt
@@ -51,7 +51,7 @@ function normalizeToken(req, res, next) {
 /**
  * Checks if the user role meets the minimum requirements of the route
  */
-exports.hasRole = function(roleRequired) {
+function hasRole(roleRequired) {
   if (!roleRequired) throw new Error('Required role needs to be set');
 
   return compose()
@@ -69,16 +69,21 @@ exports.hasRole = function(roleRequired) {
 /**
  * Returns a jwt token signed by the app secret
  */
-exports.signToken = function(id) {
+function signToken(id) {
   return jwt.sign({ _id: id }, config.secrets.session, { expiresIn: 60*60*5 });
 }
 
 /**
  * Set token cookie directly for oAuth strategies
  */
-exports.setTokenCookie = function(req, res) {
+function setTokenCookie(req, res) {
   if (!req.user) return res.status(404).json({ message: 'Something went wrong, please try again.'});
   var token = signToken(req.user._id, req.user.role);
   res.cookie('token', JSON.stringify(token));
   res.redirect('/');
 }
+
+exports.isAuthenticated = isAuthenticated;
+exports.hasRole = hasRole;
+exports.signToken = signToken;
+exports.setTokenCookie = setTokenCookie;
