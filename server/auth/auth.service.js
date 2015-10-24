@@ -1,3 +1,7 @@
+/**
+ * Serverside authentication service
+ * @module AuthService
+ */
 'use strict';
 
 var mongoose = require('mongoose');
@@ -13,7 +17,7 @@ var validateJwt = expressJwt({ secret: config.secrets.session });
  * Attaches the user object to the request if authenticated
  * Otherwise returns 403
  */
-function isAuthenticated() {
+exports.isAuthenticated = function() {
   return compose()
       .use(normalizeToken)
       // Validate jwt
@@ -47,7 +51,7 @@ function normalizeToken(req, res, next) {
 /**
  * Checks if the user role meets the minimum requirements of the route
  */
-function hasRole(roleRequired) {
+exports.hasRole = function(roleRequired) {
   if (!roleRequired) throw new Error('Required role needs to be set');
 
   return compose()
@@ -65,21 +69,16 @@ function hasRole(roleRequired) {
 /**
  * Returns a jwt token signed by the app secret
  */
-function signToken(id) {
+exports.signToken = function(id) {
   return jwt.sign({ _id: id }, config.secrets.session, { expiresIn: 60*60*5 });
 }
 
 /**
  * Set token cookie directly for oAuth strategies
  */
-function setTokenCookie(req, res) {
+exports.setTokenCookie = function(req, res) {
   if (!req.user) return res.status(404).json({ message: 'Something went wrong, please try again.'});
   var token = signToken(req.user._id, req.user.role);
   res.cookie('token', JSON.stringify(token));
   res.redirect('/');
 }
-
-exports.isAuthenticated = isAuthenticated;
-exports.hasRole = hasRole;
-exports.signToken = signToken;
-exports.setTokenCookie = setTokenCookie;

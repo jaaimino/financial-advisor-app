@@ -1,5 +1,9 @@
 'use strict';
 
+/**
+ * Clientside Angular Authentication Service
+ * @class Auth
+ */
 angular.module('finAdviseApp')
   .factory('Auth', function Auth($location, $rootScope, $http, User, $cookieStore, $q) {
     var currentUser = {};
@@ -11,7 +15,8 @@ angular.module('finAdviseApp')
 
       /**
        * Authenticate user and save token
-       *
+       * @function
+       * @memberof Auth
        * @param  {Object}   user     - login info
        * @param  {Function} callback - optional
        * @return {Promise}
@@ -41,7 +46,8 @@ angular.module('finAdviseApp')
 
       /**
        * Delete access token and user info
-       *
+       * @function
+       * @memberof Auth
        * @param  {Function}
        */
       logout: function() {
@@ -51,7 +57,8 @@ angular.module('finAdviseApp')
 
       /**
        * Create a new user
-       *
+       * @function
+       * @memberof Auth
        * @param  {Object}   user     - user info
        * @param  {Function} callback - optional
        * @return {Promise}
@@ -73,7 +80,8 @@ angular.module('finAdviseApp')
 
       /**
        * Change password
-       *
+       * @function
+       * @memberof Auth
        * @param  {String}   oldPassword
        * @param  {String}   newPassword
        * @param  {Function} callback    - optional
@@ -94,7 +102,8 @@ angular.module('finAdviseApp')
 
       /**
        * Gets all available info on authenticated user
-       *
+       * @function
+       * @memberof Auth
        * @return {Object} user
        */
       getCurrentUser: function() {
@@ -103,7 +112,8 @@ angular.module('finAdviseApp')
 
       /**
        * Check if a user is logged in
-       *
+       * @function
+       * @memberof Auth
        * @return {Boolean}
        */
       isLoggedIn: function() {
@@ -112,6 +122,8 @@ angular.module('finAdviseApp')
 
       /**
        * Waits for currentUser to resolve before checking if user is logged in
+       * @function
+       * @memberof Auth
        */
       isLoggedInAsync: function(cb) {
         if(currentUser.hasOwnProperty('$promise')) {
@@ -129,7 +141,8 @@ angular.module('finAdviseApp')
 
       /**
        * Check if a user is an admin
-       *
+       * @function
+       * @memberof Auth
        * @return {Boolean}
        */
       isAdmin: function() {
@@ -138,6 +151,8 @@ angular.module('finAdviseApp')
 
       /**
        * Get auth token
+       * @function
+       * @memberof Auth
        */
       getToken: function() {
         return $cookieStore.get('token');

@@ -507,9 +507,12 @@ module.exports = function (grunt) {
     jsdoc : {
         dist : {
             src: [
+            'server/**/*.js',
+            '!server/**/*.spec.js',
             '<%= yeoman.client %>/{app,components}/**/*.js',
             '!<%= yeoman.client %>/{app,components}/**/*.spec.js',
-            '!<%= yeoman.client %>/{app,components}/**/*.mock.js'
+            '!<%= yeoman.client %>/{app,components}/**/*.mock.js',
+            'README.md'
           ],
           options: {
             destination: 'documentation',
