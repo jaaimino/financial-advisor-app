@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('emoneyAdviseApp')
+angular.module('finAdviseApp')
   .config(function ($stateProvider) {
     $stateProvider
       .state('singleclient', {

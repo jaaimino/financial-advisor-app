@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('emoneyAdviseApp')
+angular.module('finAdviseApp')
   .controller('MyClientsCtrl', function ($scope, $http, $log, Auth, User) {
 
     // Use the User $resource to fetch all users

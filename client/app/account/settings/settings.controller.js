@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('emoneyAdviseApp')
+angular.module('finAdviseApp')
   .controller('SettingsCtrl', function ($scope, User, Auth) {
     $scope.errors = {};
 

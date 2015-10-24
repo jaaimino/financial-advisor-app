@@ -3,7 +3,7 @@
 /**
  * Removes server error when user updates input
  */
-angular.module('emoneyAdviseApp')
+angular.module('finAdviseApp')
   .directive('mongooseError', function () {
     return {
       restrict: 'A',

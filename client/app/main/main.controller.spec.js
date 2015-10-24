@@ -4,7 +4,7 @@
 describe('Controller: MainCtrl', function () {
 
   // load the controller's module
-  beforeEach(module('emoneyAdviseApp'));
+  beforeEach(module('finAdviseApp'));
 
   var MainCtrl,
       scope,

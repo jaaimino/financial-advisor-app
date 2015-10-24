@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('emoneyAdviseApp')
+angular.module('finAdviseApp')
   .controller('SingleAccountCtrl', function ($scope, $stateParams, $http) {
     var clientId = $stateParams.id;
     var accountId = $stateParams.accid;

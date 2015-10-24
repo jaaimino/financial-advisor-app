@@ -301,7 +301,7 @@ module.exports = function (grunt) {
     ngtemplates: {
       options: {
         // This should be the name of your apps angular module
-        module: 'emoneyAdviseApp',
+        module: 'finAdviseApp',
         htmlmin: {
           collapseBooleanAttributes: true,
           collapseWhitespace: true,
