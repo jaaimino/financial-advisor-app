@@ -14,7 +14,7 @@ var validationError = function(res, err) {
  * restriction: 'admin'
  */
 exports.index = function(req, res) {
-  User.find({}, '-salt -hashedPassword', function (err, user) {
+  User.find({}, '-salt -hashedPassword', function (err, users) {
     if(err) return res.status(500).send(err);
     res.status(200).json(users);
   });
@@ -42,7 +42,7 @@ exports.show = function (req, res, next) {
 
   User.findById(userId, '-salt -hashedPassword', function (err, user) {
     if (err) return next(err);
-    if (!users) return res.status(401).send('Unauthorized');
+    if (!user) return res.status(401).send('Unauthorized');
     res.json(user.profile);
   });
 };

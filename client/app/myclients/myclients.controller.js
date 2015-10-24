@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('finAdviseApp')
-  .controller('MyClientsCtrl', function ($scope, $http, $log, Auth, User) {
+  .controller('MyClientsCtrl', function ($scope, $http, $log, Auth) {
 
     // Use the User $resource to fetch all users
     $scope.getCurrentUser = Auth.getCurrentUser;
