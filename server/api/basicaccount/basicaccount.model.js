@@ -13,7 +13,7 @@ var BasicAccountSchema = new Schema({
   description     : { type: String, required: false },
   available_balance : { type: Number, required: false },
   total_balance   : { type: Number, required: false },
-  date_created    : { type: Date, required: true  },
+  date_created    : { type: Date, default: Date.now },
   account_type    : { type: String, required: false },
   active: Boolean
 });

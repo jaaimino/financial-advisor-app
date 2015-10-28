@@ -28,7 +28,7 @@
                     <span class="text-muted">{{client.email}}</span>
                     </h4>
                     </a>
-                    <p class="">Added: {{client.added}}</p>
+                    <p class="">Client Since: {{client.added | date : format : timezone}}</p>
                     <!-- Can't actually delete clients. Will be able to transfer later -->
                     <!-- <a ng-click="openModal()" class="trash"><span class="glyphicon glyphicon-trash pull-right"></span></a> -->
                 </li>

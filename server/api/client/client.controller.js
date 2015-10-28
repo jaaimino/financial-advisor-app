@@ -3,6 +3,9 @@
 var _ = require('lodash');
 var Client = require('./client.model');
 var Account = require('../account/account.model');
+var BasicAccount = require('../basicaccount/basicaccount.model');
+var InvestmentAccount = require('../investmentaccount/investmentaccount.model');
+var Loan = require('../loan/loan.model');
 var passport = require('passport');
 var config = require('../../config/environment');
 var jwt = require('jsonwebtoken');
@@ -44,16 +47,35 @@ exports.clientaccounts = function(req, res) {
         return res.status(200).json(accounts);
       });
   });
-};
+}; 
 
-// Get accounts for single client for an advisor
+// Get single account and sub accounts for single client for an advisor
 exports.clientaccount = function(req, res) {
   var userId = req.user._id;
   var accountId = req.params.accid;
+  //Find client first
   Client.findOne({_id: req.params.id, advisor: userId}, function (err, client) {
+    if(err) { return handleError(res, err); }
     Account.findOne({_id: accountId, client: client._id}, function(err, account){
-      if(err) { return handleError(res, err); }
-      return res.status(200).json(account);
+      //Look up sub accounts for this account
+      //Basic accounts first
+      var someaccount = account.toObject();
+      BasicAccount.find({account: accountId}, function(err, basicaccounts){
+        if(err) { return handleError(res, err); }
+        someaccount.basicaccounts = basicaccounts;
+        //Now investment accounts
+        InvestmentAccount.find({account: accountId}, function(err, investmentaccounts){
+          if(err) { return handleError(res, err); }
+          someaccount.investmentaccounts = investmentaccounts;
+          //Now loans
+          Loan.find({account: accountId}, function(err, loans){
+            if(err) { return handleError(res, err); }
+            someaccount.loans = loans;
+            if(err) { return handleError(res, err); }
+            return res.status(200).json(someaccount);
+          });
+        });
+      });
     });
   });
 };

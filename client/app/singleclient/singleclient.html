@@ -4,31 +4,33 @@
   <div class="row">
     <div class="col-md-12">
       <div class="row">
-        <div class="col-md-8 col-md-offset-2">
+        <div class="col-md-10 col-md-offset-1">
           <h1 class="page-title"><strong>{{client.name}}</strong></h1>
         </div>
       </div>
       <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-          <h3>Description</h3>
+        <div class="col-md-10 col-md-offset-1">
+          <h3>Details</h3>
+          <h4>Description</h4>
           <p>
             {{client.description}}
             <span ng-if="!client.description">No description provided.</span>
           </p>
+          <h4>Client Since</h4>
+          <p>{{client.added | date : format : timezone}}</p>
           <h3>Contact</h3>
           <h4>Phone</h4>
           <span ng-if="!client.phone">N/A</span>
           <h4>Email</h4>
           <p>{{client.email}}</p>
           <h3>Accounts Overview</h3>
-          <p>Client Since: {{client.added}}</p>
           <p>Total Cash Balance: <span ng-if="!client.total_cash_balance">N/A</span></p>
           <p>Total Liability: <span ng-if="!client.total_cash_balance">N/A</span></p>
           <p>Total Holdings Balance: <span ng-if="!client.total_cash_balance">N/A</span></p>
         </div>
       </div>
       <div class="row">
-        <div class="col-md-8 col-md-offset-2">
+        <div class="col-md-6 col-md-offset-1">
           <!-- <a ng-click="openModal()" class="trash"><span class="glyphicon glyphicon-trash pull-right"></span></a> -->
           <h3>Accounts</h3>
           <div ng-if="accounts.length < 1">
@@ -45,11 +47,13 @@
           </ul>
         </div>  
       </div>
+      <!--
       <div class="row">
-        <div class="col-md-8 col-md-offset-2 text-center">
+        <div class="col-md-10 col-md-offset-1 text-center">
           <pagination total-items="bigTotalItems" ng-model="bigCurrentPage" max-size="maxSize" class="pagination-md" boundary-links="true"></pagination>
         </div>
       </div>
+      -->
     </div>
   </div>
 </div>

@@ -8,12 +8,13 @@
 var User = require('../api/user/user.model');
 var Client = require('../api/client/client.model');
 var Account = require('../api/account/account.model');
+var BasicAccount = require('../api/basicaccount/basicaccount.model');
+var InvestmentAccount = require('../api/investmentaccount/investmentaccount.model');
+var Loan = require('../api/loan/loan.model');
 
 User.remove({}, function(){});
 Client.remove({}, function(){});
 Account.remove({}, function(){});
-
-
 
 var firstNames = ["James", "John", "Jimmy", "Gerald", "Susan", "Charlotte", "Joseph", "Jacqueline", "Anne"];
 var lastNames = ["Waverly", "Smith", "Ford", "Fields", "Smithers", "Vanderbilt"];
@@ -78,6 +79,35 @@ var johndoeaccount1 = new Account({
     client: johndoe._id
 });
 johndoeaccount1.save();
+
+var johndoebasicaccount1 = new BasicAccount({
+    name: 'My Checking',
+    account_number: 123,
+    account: johndoeaccount1._id
+});
+johndoebasicaccount1.save();
+
+var johndoebasicaccount2 = new BasicAccount({
+    name: 'My Other Checking',
+    account_number: 113,
+    account: johndoeaccount1._id
+});
+johndoebasicaccount2.save();
+
+var johndoeinvestmentaccount1 = new InvestmentAccount({
+    name: 'My Investment Account',
+    account_number: 1337,
+    account: johndoeaccount1._id
+});
+johndoeinvestmentaccount1.save();
+
+var johndoeloan1 = new Loan({
+    name: 'My Super Cool Loan',
+    account_number: 1337,
+    balance: 1337,
+    account: johndoeaccount1._id
+});
+johndoeloan1.save();
 
 var admin = new User({
     provider: 'local',

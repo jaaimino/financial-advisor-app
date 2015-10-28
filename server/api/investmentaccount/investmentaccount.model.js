@@ -9,7 +9,7 @@ var InvestmentAccountSchema = new Schema({
   account_number  : { type: String, required: true },
   description     : { type: String, required: false },
   balance         : { type: Number, required: false },
-  date_created    : { type: Date, required: true},
+  date_created    : { type: Date, default: Date.now},
   account_type    : { type: String, required: false },
   active: Boolean
 });

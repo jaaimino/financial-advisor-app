@@ -3,7 +3,7 @@
 describe('Controller: SingleaccountCtrl', function () {
 
   // load the controller's module
-  beforeEach(module('finAdviseApp'));
+  beforeEach(module('emoneyAdviseApp'));
 
   var SingleaccountCtrl, scope;
 
