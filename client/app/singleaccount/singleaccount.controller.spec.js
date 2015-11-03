@@ -1,5 +1,6 @@
 'use strict';
 
+/*
 describe('Controller: SingleaccountCtrl', function () {
 
   // load the controller's module
@@ -19,3 +20,4 @@ describe('Controller: SingleaccountCtrl', function () {
     expect(1).toEqual(1);
   });
 });
+*/
