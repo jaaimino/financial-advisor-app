@@ -1,23 +1,54 @@
 'use strict';
 
-/*
+
 describe('Controller: SingleaccountCtrl', function () {
 
   // load the controller's module
-  beforeEach(module('emoneyAdviseApp'));
+  beforeEach(module('finAdviseApp'));
 
-  var SingleaccountCtrl, scope;
+  var SingleAccountCtrl,
+      scope,
+      $httpBackend;
 
   // Initialize the controller and a mock scope
-  beforeEach(inject(function ($controller, $rootScope) {
+  beforeEach(inject(function (_$httpBackend_, $controller, $rootScope) {
+    $httpBackend = _$httpBackend_;
+    //Mock client
+    $httpBackend.expectGET('/api/clients/myclients/abc')
+      .respond({
+          name: 'John Doe', 
+          email: 'johndoe@gmail.com',
+          description: 'Oldest and most important client. Do not lose!' 
+      });
+
+    //Mock client account
+    $httpBackend.expectGET('/api/clients/myclients/abc/account/abcd')
+      .respond({
+          name: 'Fake Emoney Site ;)',
+          description: 'My fake eMoney bank account for testing!',
+          client: 'a'
+      });
+
     scope = $rootScope.$new();
-    SingleaccountCtrl = $controller('SingleAccountCtrl', {
-      $scope: scope
+    SingleAccountCtrl = $controller('SingleAccountCtrl', {
+      $scope: scope,
+      $stateParams: {id: 'abc', accid: 'abcd'}
     });
   }));
 
-  it('should ...', function () {
-    expect(1).toEqual(1);
+  it('should attach a list of things to the scope', function () {
+    $httpBackend.flush();
+    expect(scope.client).toEqual({
+          name: 'John Doe', 
+          email: 'johndoe@gmail.com',
+          description: 'Oldest and most important client. Do not lose!'
+      });
+    
+    expect(scope.account).toEqual({
+          name: 'Fake Emoney Site ;)',
+          description: 'My fake eMoney bank account for testing!',
+          client: 'a'
+      });
   });
 });
-*/
+
