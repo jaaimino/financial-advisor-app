@@ -87,12 +87,13 @@ exports.clientaccountsubaccount = function(req, res) {
   var accountId = req.params.accid;
   var subaccountId = req.params.subid;
   //Find client first
-  BasicAccount.findOne({_id: subaccountId, account: accountId}, function(err, basicaccount){
+  BasicAccount.findOne({_id: subaccountId}, function(err, basicaccount){
     if(err) { return handleError(res, err); }
     var basicaccount = basicaccount.toObject();
     BankTransaction.find({account: subaccountId}, function(err, banktransactions){
       if(err) { return handleError(res, err); }
       basicaccount.transactions = banktransactions;
+      return res.status(200).json(basicaccount);
     });
   });
 };

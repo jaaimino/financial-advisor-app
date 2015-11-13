@@ -8,6 +8,15 @@ angular.module('finAdviseApp')
     $scope.account = {};
     $scope.accounts = [];
 
+    $scope.getSubAccountDetails = function(subaccount, collapsed){
+      if(!collapsed){
+        $http.get('/api/clients/myclients/' + clientId + '/account/' + 
+          accountId + '/subaccount/' + subaccount._id).success(function(detailsubaccount) {
+            subaccount.transactions = detailsubaccount.transactions;
+        });
+      }
+    };
+
     $http.get('/api/clients/myclients/' + clientId).success(function(client) {
       $scope.client = client;
     });

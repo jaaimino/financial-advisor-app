@@ -12,10 +12,10 @@ var BankTransactionSchema = new Schema({
   description          : { type: String, required: false },
   amount               : { type: Number, required: false },
   positive             : { type: Boolean, default: true },
-  added                : { type: Date, required: true },
+  added                : { type: Date, default: Date.now },
   merchant_name        : { type: String, required: false },
   merchant_category    : { type: String, required: false },
-  active               : {type: Boolean, default: true}
+  active: Boolean
 });
 
 module.exports = mongoose.model('BankTransaction', BankTransactionSchema);

@@ -89,22 +89,20 @@ var johndoebasicaccount1 = new BasicAccount({
 johndoebasicaccount1.save();
 
 var johndoebasicaccount1transaction1 = new BankTransaction({
-    account: johndoeaccount1._id,
+    account: johndoebasicaccount1._id,
     description: '17 Basketballs',
     amount: 114,
     positive: false,
-    added: Date.now,
     merchant_name: 'Walmart',
     merchant_category: 'Sports'
 });
 johndoebasicaccount1transaction1.save();
 
 var johndoebasicaccount1transaction2 = new BankTransaction({
-    account: johndoeaccount1._id,
+    account: johndoebasicaccount1._id,
     description: '46 Watermelons',
     amount: 400,
     positive: false,
-    added: Date.now,
     merchant_name: 'Shop Rite',
     merchant_category: 'Groceries'
 });

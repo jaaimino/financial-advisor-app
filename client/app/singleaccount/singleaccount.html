@@ -33,20 +33,25 @@
             <div class="alert alert-danger" role="alert">No basic accounts found!</div>
           </div>
           <ul class="list-group">
-              <li class="list-group-item" ng-repeat="basicaccount in account.basicaccounts | filter:asyncSelected | orderBy: 'name'">
+              <li class="list-group-item" ng-repeat="basicaccount in account.basicaccounts | orderBy: 'name'">
                   <div class="row">
                     <div class="col-xs-8">
                       <h4>{{basicaccount.name}}
-                        <span class="text-muted">#{{basicaccount.account_number}}</span>
+                        <!--<span class="text-muted">#{{basicaccount.account_number}}</span>-->
                       </h4>
                     </div>
                     <div class="col-xs-4">
-                      <button class="btn btn-primary pull-right" ng-click="isCollapsed = !isCollapsed">Details</button>
+                      <button class="btn btn-primary pull-right" ng-click="getSubAccountDetails(basicaccount, isCollapsed); isCollapsed = !isCollapsed">Details</button>
                     </div>
                   </div>
                   <div class="row">
                     <div class="col-md-12">
                       <div collapse="!isCollapsed">
+                      <ul>
+                      <li class="list-group-item" ng-if="basicaccount.transactions" ng-repeat="transaction in basicaccount.transactions | orderBy: 'added'">
+                      {{transaction.added | date : format : timezone}}
+                      </li>
+                      </ul>
                         <div class="well well-lg">Some content</div>
                         <pagination total-items="bigTotalItems" ng-model="bigCurrentPage" max-size="maxSize" class="pagination-md" boundary-links="true"></pagination>
                       </div>
@@ -59,7 +64,7 @@
             <div class="alert alert-danger" role="alert">No investment accounts found!</div>
           </div>
           <ul class="list-group">
-              <li class="list-group-item" ng-repeat="investmentaccount in account.investmentaccounts | filter:asyncSelected | orderBy: 'name'">
+              <li class="list-group-item" ng-repeat="investmentaccount in account.investmentaccounts | orderBy: 'name'">
                   <div class="row">
                     <div class="col-xs-8">
                       <h4>{{investmentaccount.name}}
@@ -85,7 +90,7 @@
             <div class="alert alert-danger" role="alert">No loans found!</div>
           </div>
           <ul class="list-group">
-              <li class="list-group-item" ng-repeat="loan in account.loans | filter:asyncSelected | orderBy: 'name'">
+              <li class="list-group-item" ng-repeat="loan in account.loans | orderBy: 'name'">
                   <div class="row">
                     <div class="col-xs-8">
                       <h4>{{loan.name}}
