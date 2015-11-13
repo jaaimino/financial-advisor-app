@@ -82,7 +82,8 @@ var johndoeaccount1 = new Account({
 johndoeaccount1.save();
 
 var johndoebasicaccount1 = new BasicAccount({
-    name: 'My Checking',
+    name: 'John\'s Checking',
+    description: 'My super basic checking account',
     account_number: 123,
     account: johndoeaccount1._id
 });
@@ -109,21 +110,22 @@ var johndoebasicaccount1transaction2 = new BankTransaction({
 johndoebasicaccount1transaction2.save();
 
 var johndoebasicaccount2 = new BasicAccount({
-    name: 'My Other Checking',
+    name: 'John\'s Other Checking',
+    description: 'My other super basic checking account',
     account_number: 113,
     account: johndoeaccount1._id
 });
 johndoebasicaccount2.save();
 
 var johndoeinvestmentaccount1 = new InvestmentAccount({
-    name: 'My Investment Account',
-    account_number: 1337,
+    name: 'John\'s Investment Account',
+    account_number: 125,
     account: johndoeaccount1._id
 });
 johndoeinvestmentaccount1.save();
 
 var johndoeloan1 = new Loan({
-    name: 'My Super Cool Loan',
+    name: 'John\'s Super Cool Loan',
     account_number: 1337,
     balance: 1337,
     account: johndoeaccount1._id

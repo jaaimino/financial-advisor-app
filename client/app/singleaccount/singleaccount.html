@@ -37,7 +37,7 @@
                   <div class="row">
                     <div class="col-xs-8">
                       <h4>{{basicaccount.name}}
-                        <!--<span class="text-muted">#{{basicaccount.account_number}}</span>-->
+                        <span class="text-muted">#{{basicaccount.account_number}}</span>
                       </h4>
                     </div>
                     <div class="col-xs-4">
@@ -47,13 +47,36 @@
                   <div class="row">
                     <div class="col-md-12">
                       <div collapse="!isCollapsed">
-                      <ul>
-                      <li class="list-group-item" ng-if="basicaccount.transactions" ng-repeat="transaction in basicaccount.transactions | orderBy: 'added'">
-                      {{transaction.added | date : format : timezone}}
-                      </li>
-                      </ul>
-                        <div class="well well-lg">Some content</div>
-                        <pagination total-items="bigTotalItems" ng-model="bigCurrentPage" max-size="maxSize" class="pagination-md" boundary-links="true"></pagination>
+                        <h4>Account Details</h4>
+                        <h5>Description</h5>
+                        <p ng-if="!basicaccount.description">None</p>
+                        <p>{{basicaccount.description}}</p>
+                        <div ng-if="0 < basicaccount.transactions.length">
+                          <h5>Transactions</h5>
+                          <table class="table table-bordered">
+                            <tr>
+                              <th>Date</th>
+                              <th>Description</th>
+                              <th>Amount</th>
+                              <th>Currency Codes</th>
+                              <th>Merchant Name</th>
+                              <th>Merchant Category</th>
+                            </tr>
+                            <tr ng-repeat="transaction in basicaccount.transactions | orderBy: 'added'">
+                              <td>{{transaction.added | date : format : timezone}}</td>
+                              <td>{{transaction.description}}</td>
+                              <td>
+                                <span ng-if="!transaction.positive">
+                                - <!-- Need the negative sign if it's negative --> 
+                                </span>
+                                ${{transaction.amount}}
+                              </td>
+                              <td>{{transaction.currency_codes}}</td>
+                              <td>{{transaction.merchant_name}}</td>
+                              <td>{{transaction.merchant_category}}</td>
+                            </tr>
+                          </table>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -68,7 +91,7 @@
                   <div class="row">
                     <div class="col-xs-8">
                       <h4>{{investmentaccount.name}}
-                      <!--<span class="text-muted">#{{account.account_number}}</span>-->
+                      <span class="text-muted">#{{investmentaccount.account_number}}</span>
                       </h4>
                     </div>
                     <div class="col-xs-4">
@@ -78,8 +101,10 @@
                   <div class="row">
                     <div class="col-md-12">
                       <div collapse="!isCollapsed">
-                        <div class="well well-lg">Some content</div>
-                        <pagination total-items="bigTotalItems" ng-model="bigCurrentPage" max-size="maxSize" class="pagination-md" boundary-links="true"></pagination>
+                        <h4>Account Details</h4>
+                        <h5>Description</h5>
+                        <p ng-if="!investmentaccount.description">None</p>
+                        <p>{{investmentaccount.description}}</p>
                       </div>
                     </div>
                   </div>
@@ -94,7 +119,7 @@
                   <div class="row">
                     <div class="col-xs-8">
                       <h4>{{loan.name}}
-                      <!--<span class="text-muted">#{{account.account_number}}</span>-->
+                      <span class="text-muted">#{{loan.account_number}}</span>
                       </h4>
                     </div>
                     <div class="col-xs-4">
@@ -104,8 +129,10 @@
                   <div class="row">
                     <div class="col-md-12">
                       <div collapse="!isCollapsed">
-                        <div class="well well-lg">Some content</div>
-                        <pagination total-items="bigTotalItems" ng-model="bigCurrentPage" max-size="maxSize" class="pagination-md" boundary-links="true"></pagination>
+                        <h4>Account Details</h4>
+                        <h5>Description</h5>
+                        <p ng-if="!loan.description">None</p>
+                        <p>{{loan.description}}</p>
                       </div>
                     </div>
                   </div>
