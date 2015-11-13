@@ -4,6 +4,7 @@ var _ = require('lodash');
 var Client = require('./client.model');
 var Account = require('../account/account.model');
 var BasicAccount = require('../basicaccount/basicaccount.model');
+var BankTransaction = require('../banktransaction/banktransaction.model');
 var InvestmentAccount = require('../investmentaccount/investmentaccount.model');
 var Loan = require('../loan/loan.model');
 var passport = require('passport');
@@ -76,6 +77,22 @@ exports.clientaccount = function(req, res) {
           });
         });
       });
+    });
+  });
+};
+
+// Get single account and sub accounts for single client for an advisor
+exports.clientaccountsubaccount = function(req, res) {
+  var userId = req.user._id;
+  var accountId = req.params.accid;
+  var subaccountId = req.params.subid;
+  //Find client first
+  BasicAccount.findOne({_id: subaccountId, account: accountId}, function(err, basicaccount){
+    if(err) { return handleError(res, err); }
+    var basicaccount = basicaccount.toObject();
+    BankTransaction.find({account: subaccountId}, function(err, banktransactions){
+      if(err) { return handleError(res, err); }
+      basicaccount.transactions = banktransactions;
     });
   });
 };

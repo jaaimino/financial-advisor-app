@@ -7,8 +7,8 @@ var mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 
 var BasicAccountSchema = new Schema({
-  account: Schema.ObjectId,
-  name: String,
+  account         : { type: Schema.ObjectId, required: true },
+  name            : String,
   account_number  : { type: String, required: true },
   description     : { type: String, required: false },
   available_balance : { type: Number, required: false },

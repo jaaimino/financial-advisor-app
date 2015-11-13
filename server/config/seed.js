@@ -9,6 +9,7 @@ var User = require('../api/user/user.model');
 var Client = require('../api/client/client.model');
 var Account = require('../api/account/account.model');
 var BasicAccount = require('../api/basicaccount/basicaccount.model');
+var BankTransaction = require('../api/banktransaction/banktransaction.model');
 var InvestmentAccount = require('../api/investmentaccount/investmentaccount.model');
 var Loan = require('../api/loan/loan.model');
 
@@ -86,6 +87,28 @@ var johndoebasicaccount1 = new BasicAccount({
     account: johndoeaccount1._id
 });
 johndoebasicaccount1.save();
+
+var johndoebasicaccount1transaction1 = new BankTransaction({
+    account: johndoeaccount1._id,
+    description: '17 Basketballs',
+    amount: 114,
+    positive: false,
+    added: Date.now,
+    merchant_name: 'Walmart',
+    merchant_category: 'Sports'
+});
+johndoebasicaccount1transaction1.save();
+
+var johndoebasicaccount1transaction2 = new BankTransaction({
+    account: johndoeaccount1._id,
+    description: '46 Watermelons',
+    amount: 400,
+    positive: false,
+    added: Date.now,
+    merchant_name: 'Shop Rite',
+    merchant_category: 'Groceries'
+});
+johndoebasicaccount1transaction2.save();
 
 var johndoebasicaccount2 = new BasicAccount({
     name: 'My Other Checking',

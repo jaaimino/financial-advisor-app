@@ -13,6 +13,7 @@ router.get('/myclients/:id', auth.isAuthenticated(), controller.myclient);
 router.get('/myclients/:id/accounts', auth.isAuthenticated(), controller.clientaccounts );
 router.get('/myclients/:id/account/:accid', auth.isAuthenticated(), controller.clientaccount);
 router.get('/myclients/:id/account/:accid/subaccounts', auth.isAuthenticated(), controller.clientaccount);
+router.get('/myclients/:id/account/:accid/subaccount/:subid', auth.isAuthenticated(), controller.clientaccountsubaccount);
 router.get('/:id', auth.isAuthenticated(), controller.show);
 router.post('/', auth.isAuthenticated(), controller.create);
 router.put('/:id', auth.isAuthenticated(), controller.update);

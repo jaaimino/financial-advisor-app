@@ -4,8 +4,8 @@ var mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 
 var InvestmentAccountSchema = new Schema({
-  account: Schema.ObjectId,
-  name: String,
+  account 		  : { type: Schema.ObjectId, required: true },
+  name 			  : String,
   account_number  : { type: String, required: true },
   description     : { type: String, required: false },
   balance         : { type: Number, required: false },

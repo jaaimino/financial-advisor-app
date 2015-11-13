@@ -7,7 +7,7 @@ var mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 
 var ClientSchema = new Schema({
-  advisor: Schema.ObjectId,
+  advisor: { type: Schema.ObjectId, required: true },
   name: String,
   email: { type: String, lowercase: true },
   phone: { type: String, lowercase: true },
