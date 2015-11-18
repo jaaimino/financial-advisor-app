@@ -31,6 +31,7 @@ var user = new User({
 });
 user.save();
 
+/*
 //Generate a bunch of random people to add as clients
 for(var i=0;i<8;i++){
     var randomFirstName = firstNames[Math.floor(Math.random()*firstNames.length)];
@@ -47,36 +48,60 @@ for(var i=0;i<8;i++){
     someClient.save();
     //console.log(someClient);
 }
+*/
 
 var johndoe = new Client({
-    name: 'John Doe', 
+    name: 'John Doe',
     email: 'johndoe@gmail.com',
-    description: 'Oldest and most important client. Do not lose!', 
+    description: 'Oldest and most important client. Do not lose!',
     advisor: user._id
 });
 johndoe.save();
 
-var janedoe = new Client({name: 'Jane Doe', 
-    email: 'janedoe@gmail.com', 
+var janedoe = new Client({name: 'Jane Doe',
+    email: 'janedoe@gmail.com',
     advisor: user._id
 });
 janedoe.save();
 
-var jamesdoe = new Client({name: 'James Doe', 
-    email: 'jamesdoe@gmail.com', 
+var jamesdoe = new Client({name: 'James Doe',
+    email: 'jamesdoe@gmail.com',
     advisor: user._id
 });
 jamesdoe.save();
 
-var susandoe = new Client({name: 'Susan Doe', 
-    email: 'susandoe@gmail.com', 
+var susandoe = new Client({name: 'Susan Doe',
+    email: 'susandoe@gmail.com',
     advisor: user._id
 });
 susandoe.save();
 
+var jamesdoeaccount1 = new Account({
+    name: 'Fake Emoney Site ;)',
+    description: 'My fake eMoney bank account for testing!',
+    site: 'http://udel.emoneyadvisor.com/',
+    username: 'OneMFCred',
+    password: 'OneMFCred',
+    client: jamesdoe._id
+});
+jamesdoeaccount1.save();
+
+var susandoeaccount1 = new Account({
+    name: 'Fake Emoney Site ;)',
+    description: 'My fake eMoney bank account for testing!',
+    site: 'http://udel.emoneyadvisor.com/',
+    username: 'Test2',
+    password: 'Test2',
+    client: susandoe._id
+});
+susandoeaccount1.save();
+
 var johndoeaccount1 = new Account({
     name: 'Fake Emoney Site ;)',
     description: 'My fake eMoney bank account for testing!',
+    site: 'http://udel.emoneyadvisor.com/',
+    username: 'Test',
+    password: 'Test',
     client: johndoe._id
 });
 johndoeaccount1.save();
@@ -141,3 +166,4 @@ var admin = new User({
   });
 admin.save();
 
+console.log("!--- Finished populating data ---!")

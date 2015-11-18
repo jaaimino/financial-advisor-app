@@ -9,6 +9,9 @@ var mongoose = require('mongoose'),
 var AccountSchema = new Schema({
   client		  : { type: Schema.ObjectId, required: true },
   name            : { type: String, required: true },
+  site            : {type: String, required: true},
+  username        : {type: String, required: true},
+  password        : {type: String, required: true},
   description     : { type: String, required: false },
   added			  : { type: Date, default: Date.now },
   active		  : Boolean
