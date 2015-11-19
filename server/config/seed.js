@@ -23,6 +23,9 @@ var lastNames = ["Waverly", "Smith", "Ford", "Fields", "Smithers", "Vanderbilt"]
 var randomFirstName = firstNames[Math.floor(Math.random()*firstNames.length)];
 var randomLastName = lastNames[Math.floor(Math.random()*lastNames.length)];
 
+/*
+ * Users
+ */
 var user = new User({
     provider: 'local',
     name: randomFirstName+" "+randomLastName,
@@ -30,6 +33,15 @@ var user = new User({
     password: 'test'
 });
 user.save();
+
+var admin = new User({
+    provider: 'local',
+    role: 'admin',
+    name: 'Admin',
+    email: 'admin@admin.com',
+    password: 'admin'
+  });
+admin.save();
 
 /*
 //Generate a bunch of random people to add as clients
@@ -50,6 +62,30 @@ for(var i=0;i<8;i++){
 }
 */
 
+/*
+ * Allison Doe
+ */
+var allisondoe = new Client({
+    name: 'John Doe',
+    email: 'johndoe@gmail.com',
+    description: 'Oldest and most important client. Do not lose!',
+    advisor: user._id
+});
+allisondoe.save();
+
+var allisondoeaccount1 = new Account({
+    name: 'Fake Emoney Site ;)',
+    description: 'My fake eMoney bank account for testing!',
+    site: 'http://udel.emoneyadvisor.com/',
+    username: 'Redirects',
+    password: 'Redirects',
+    client: allisondoe._id
+});
+allisondoeaccount1.save();
+
+/*
+ * John Doe
+ */
 var johndoe = new Client({
     name: 'John Doe',
     email: 'johndoe@gmail.com',
@@ -57,44 +93,6 @@ var johndoe = new Client({
     advisor: user._id
 });
 johndoe.save();
-
-var janedoe = new Client({name: 'Jane Doe',
-    email: 'janedoe@gmail.com',
-    advisor: user._id
-});
-janedoe.save();
-
-var jamesdoe = new Client({name: 'James Doe',
-    email: 'jamesdoe@gmail.com',
-    advisor: user._id
-});
-jamesdoe.save();
-
-var susandoe = new Client({name: 'Susan Doe',
-    email: 'susandoe@gmail.com',
-    advisor: user._id
-});
-susandoe.save();
-
-var jamesdoeaccount1 = new Account({
-    name: 'Fake Emoney Site ;)',
-    description: 'My fake eMoney bank account for testing!',
-    site: 'http://udel.emoneyadvisor.com/',
-    username: 'OneMFCred',
-    password: 'OneMFCred',
-    client: jamesdoe._id
-});
-jamesdoeaccount1.save();
-
-var susandoeaccount1 = new Account({
-    name: 'Fake Emoney Site ;)',
-    description: 'My fake eMoney bank account for testing!',
-    site: 'http://udel.emoneyadvisor.com/',
-    username: 'Test2',
-    password: 'Test2',
-    client: susandoe._id
-});
-susandoeaccount1.save();
 
 var johndoeaccount1 = new Account({
     name: 'Fake Emoney Site ;)',
@@ -106,64 +104,61 @@ var johndoeaccount1 = new Account({
 });
 johndoeaccount1.save();
 
-var johndoebasicaccount1 = new BasicAccount({
-    name: 'John\'s Checking',
-    description: 'My super basic checking account',
-    account_number: 123,
-    account: johndoeaccount1._id
+/*
+ * Jane Doe
+ */
+var janedoe = new Client({name: 'Jane Doe',
+    email: 'janedoe@gmail.com',
+    advisor: user._id
 });
-johndoebasicaccount1.save();
+janedoe.save();
 
-var johndoebasicaccount1transaction1 = new BankTransaction({
-    account: johndoebasicaccount1._id,
-    description: '17 Basketballs',
-    amount: 114,
-    positive: false,
-    merchant_name: 'Walmart',
-    merchant_category: 'Sports'
+var janedoeaccount1 = new Account({
+    name: 'Fake Emoney Site ;)',
+    description: 'My fake eMoney bank account for testing!',
+    site: 'http://udel.emoneyadvisor.com/',
+    username: 'TwoMFCreds',
+    password: 'TwoMFCreds',
+    client: janedoe._id
 });
-johndoebasicaccount1transaction1.save();
+janedoeaccount1.save();
 
-var johndoebasicaccount1transaction2 = new BankTransaction({
-    account: johndoebasicaccount1._id,
-    description: '46 Watermelons',
-    amount: 400,
-    positive: false,
-    merchant_name: 'Shop Rite',
-    merchant_category: 'Groceries'
+/*
+ * James Doe
+ */
+var jamesdoe = new Client({name: 'James Doe',
+    email: 'jamesdoe@gmail.com',
+    advisor: user._id
 });
-johndoebasicaccount1transaction2.save();
+jamesdoe.save();
 
-var johndoebasicaccount2 = new BasicAccount({
-    name: 'John\'s Other Checking',
-    description: 'My other super basic checking account',
-    account_number: 113,
-    account: johndoeaccount1._id
+var jamesdoeaccount1 = new Account({
+    name: 'Fake Emoney Site ;)',
+    description: 'My fake eMoney bank account for testing!',
+    site: 'http://udel.emoneyadvisor.com/',
+    username: 'OneMFCred',
+    password: 'OneMFCred',
+    client: jamesdoe._id
 });
-johndoebasicaccount2.save();
+jamesdoeaccount1.save();
 
-var johndoeinvestmentaccount1 = new InvestmentAccount({
-    name: 'John\'s Investment Account',
-    account_number: 125,
-    account: johndoeaccount1._id
+/*
+ * Susan Doe
+ */
+var susandoe = new Client({name: 'Susan Doe',
+    email: 'susandoe@gmail.com',
+    advisor: user._id
 });
-johndoeinvestmentaccount1.save();
+susandoe.save();
 
-var johndoeloan1 = new Loan({
-    name: 'John\'s Super Cool Loan',
-    account_number: 1337,
-    balance: 1337,
-    account: johndoeaccount1._id
+var susandoeaccount1 = new Account({
+    name: 'Fake Emoney Site ;)',
+    description: 'My fake eMoney bank account for testing!',
+    site: 'http://udel.emoneyadvisor.com/',
+    username: 'Test2',
+    password: 'Test2',
+    client: susandoe._id
 });
-johndoeloan1.save();
-
-var admin = new User({
-    provider: 'local',
-    role: 'admin',
-    name: 'Admin',
-    email: 'admin@admin.com',
-    password: 'admin'
-  });
-admin.save();
+susandoeaccount1.save();
 
 console.log("!--- Finished populating data ---!")
