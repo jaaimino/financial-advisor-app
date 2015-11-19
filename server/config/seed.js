@@ -66,9 +66,8 @@ for(var i=0;i<8;i++){
  * Allison Doe
  */
 var allisondoe = new Client({
-    name: 'John Doe',
-    email: 'johndoe@gmail.com',
-    description: 'Oldest and most important client. Do not lose!',
+    name: 'Allison Doe',
+    email: 'allisondoe@gmail.com',
     advisor: user._id
 });
 allisondoe.save();
