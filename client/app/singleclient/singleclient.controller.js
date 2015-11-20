@@ -14,4 +14,10 @@ angular.module('finAdviseApp')
       $scope.accounts = accounts;
     });
 
+    $scope.refreshdata = function(){
+      $http.get('/api/clients/myclients/' + clientId + '/accounts/refresh').success(function(accounts) {
+        console.log(accounts);
+      });
+    };
+
   });

@@ -6,7 +6,9 @@
     <div class="col-md-12">
       <div class="row">
         <div class="col-md-10 col-md-offset-1">
-          <h1 class="page-title"><strong>{{client.name}}</strong></h1>
+          <h1 class="page-title"><strong>{{client.name}}</strong>
+            <button class="btn btn-default btn-md" ng-click="refreshdata()"><i class="glyphicon glyphicon-repeat"></i></button>
+          </h1>
         </div>
       </div>
       <div class="row">
@@ -40,13 +42,13 @@
           <ul class="list-group">
               <li class="list-group-item" ng-repeat="account in accounts | filter:asyncSelected | orderBy: 'name'">
                   <a href="/myclients/{{client._id}}/account/{{account._id}}">
-                    <h4><strong>{{account.name}}</strong> 
+                    <h4><strong>{{account.name}}</strong>
                     <!--<span class="text-muted">#{{account.account_number}}</span>-->
                     </h4>
                   </a>
               </li>
           </ul>
-        </div>  
+        </div>
       </div>
       <!--
       <div class="row">

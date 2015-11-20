@@ -10,6 +10,7 @@ var Loan = require('../loan/loan.model');
 var passport = require('passport');
 var config = require('../../config/environment');
 var jwt = require('jsonwebtoken');
+var request = require('request');
 
 // Get list of clients
 exports.index = function(req, res) {
@@ -48,7 +49,34 @@ exports.clientaccounts = function(req, res) {
         return res.status(200).json(accounts);
       });
   });
-}; 
+};
+
+// Refresh data for single client for an advisor
+exports.clientaccountsrefresh = function(req, res) {
+  var clientId = req.params.id;
+  var url = 'http://localhost:8080/api/scrape/client/'+clientId;
+  request(url, function (error, response, body) {
+    if (!error && response.statusCode === 200) {
+      return res.status(200).json(body);
+    } else {
+      return res.status(404).send('Not Found');
+    }
+  })
+};
+
+// Refresh data for single account for single client for advisor
+exports.clientaccountrefresh = function(req, res) {
+  var clientId = req.params.id;
+  var accountId = req.params.accid;
+  var url = 'http://localhost:8080/api/scrape/client/'+clientId+'/'+accountId;
+  request(url, function (error, response, body) {
+    if (!error && response.statusCode === 200) {
+      return res.status(200).json(body);
+    } else {
+      return res.status(404).send('Not Found');
+    }
+  })
+};
 
 // Get single account and sub accounts for single client for an advisor
 exports.clientaccount = function(req, res) {
@@ -89,7 +117,7 @@ exports.clientaccountsubaccount = function(req, res) {
   //Find client first
   BasicAccount.findOne({_id: subaccountId}, function(err, basicaccount){
     if(err) { return handleError(res, err); }
-    var basicaccount = basicaccount.toObject();
+    basicaccount = basicaccount.toObject();
     BankTransaction.find({account: subaccountId}, function(err, banktransactions){
       if(err) { return handleError(res, err); }
       basicaccount.transactions = banktransactions;
