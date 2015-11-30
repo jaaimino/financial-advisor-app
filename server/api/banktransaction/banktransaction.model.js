@@ -8,13 +8,13 @@ var mongoose = require('mongoose'),
 
 var BankTransactionSchema = new Schema({
   account              : { type: Schema.ObjectId, required: true },
-  currency_codes       : { type: String, required: false },
-  description          : { type: String, required: false },
-  amount               : { type: Number, required: false },
+  currency_codes       : { type: String },
+  description          : { type: String },
+  amount               : { type: Number },
   positive             : { type: Boolean, default: true },
   added                : { type: Date, default: Date.now },
-  merchant_name        : { type: String, required: false },
-  merchant_category    : { type: String, required: false },
+  merchant_name        : { type: String },
+  merchant_category    : { type: String },
   active: Boolean
 });
 
