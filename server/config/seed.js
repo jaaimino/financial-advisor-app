@@ -161,4 +161,14 @@ var susandoeaccount1 = new Account({
 });
 susandoeaccount1.save();
 
+var susandoeaccount2 = new Account({
+    name: 'Fake Emoney Site 2 ;)',
+    description: 'My second fake eMoney bank account for testing!',
+    site: 'http://udel.emoneyadvisor.com/',
+    username: 'Test',
+    password: 'Test',
+    client: susandoe._id
+});
+susandoeaccount2.save();
+
 console.log("!--- Finished populating data ---!")
