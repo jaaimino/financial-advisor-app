@@ -112,6 +112,12 @@ exports.clientaccount = function(req, res) {
           Loan.find({account: accountId}, function(err, loans){
             if(err) { return handleError(res, err); }
             someaccount.loans = loans;
+            var totalLiability = 0;
+            for (var i=0;i<loans.length;i++){
+              var someloan = loans[i];
+              totalLiability += someloan.balance;
+            }
+            someaccount.total_liability = totalLiability;
             if(err) { return handleError(res, err); }
             return res.status(200).json(someaccount);
           });
