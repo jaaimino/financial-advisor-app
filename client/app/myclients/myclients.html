@@ -24,14 +24,21 @@
           </div> <br/>
           <ul class="list-group">
             <li class="list-group-item" ng-repeat="client in clients | filter:asyncSelected | orderBy: 'name'">
-              <a href="/myclients/{{client._id}}">
-                <h4><strong>{{client.name}}</strong>
-                  <span class="text-muted">{{client.email}}</span>
-                </h4>
-              </a>
-              <p class="">Client Since: {{client.added | date : format : timezone}}</p>
-              <!-- Can't actually delete clients. Will be able to transfer later -->
-              <!-- <a ng-click="openModal()" class="trash"><span class="glyphicon glyphicon-trash pull-right"></span></a> -->
+              <div class="row">
+                <div class="col-xs-10">
+                  <a href="/myclients/{{client._id}}">
+                    <h4><strong>{{client.name}}</strong>
+                      <span class="text-muted">{{client.email}}</span>
+                    </h4>
+                  </a>
+                  <p class="">Client Since: {{client.added | date : format : timezone}}</p>
+                </div>
+                <div class="col-xs-2">
+                  <button class="btn btn-danger pull-right" ng-click="deleteClient(client)">
+                    <i class="glyphicon glyphicon-trash"></i>
+                  </button>
+                </div>
+            </div>
             </li>
             <li class="list-group-item">
               <div class="row">
@@ -42,14 +49,14 @@
               <div class="row">
                 <div class="col-md-12">
                   <div collapse="!isCollapsed">
-                    <form class="form" name="form" ng-submit="login(form)" novalidate>
+                    <form class="form" name="form" ng-submit="addClient(form)" novalidate>
                       <div class="form-group">
                         <label>Name</label>
-                        <input type="text" name="name" class="form-control" ng-model="user.name" required>
+                        <input type="text" name="name" class="form-control" ng-model="newClient.name" required>
                       </div>
                       <div class="form-group">
                         <label>Email</label>
-                        <input type="email" name="email" class="form-control" ng-model="user.email" required>
+                        <input type="email" name="email" class="form-control" ng-model="newClient.email" required>
                       </div>
                       <!-- Error handling -->
                       <div class="form-group has-error">
@@ -59,10 +66,10 @@
                         <p class="help-block">{{ errors.other }}</p>
                       </div>
                       <div>
-                        <button class="btn btn-default btn-md btn-login" ng-click="addClient(); isCollapsed = false" type="submit">
+                        <button class="btn btn-default btn-md btn-login" ng-click="isCollapsed = false" type="submit">
                           Create
                         </button>
-                        <button class="btn btn-inverse btn-md btn-login" ng-click="cancel(); isCollapsed = false">
+                        <button class="btn btn-inverse btn-md btn-login" ng-click="clearClient(); isCollapsed = false">
                           Cancel
                         </button>
                       </div>

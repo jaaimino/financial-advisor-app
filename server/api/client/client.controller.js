@@ -38,6 +38,26 @@ exports.myclient = function(req, res) {
   });
 };
 
+// Deletes a account from the DB.
+exports.deletemyclient = function(req, res) {
+  Client.findById(req.params.id, function (err, client) {
+    if(err) { return handleError(res, err); }
+    if(!client) { return res.status(404).send('Not Found'); }
+    client.remove(function(err) {
+      if(err) { return handleError(res, err); }
+      return res.status(204).send('No Content');
+    });
+  });
+};
+
+// Get single client for an advisor
+exports.addmyclient = function(req, res) {
+  Client.create(req.body, function(err, client) {
+    if(err) { return handleError(res, err); }
+    return res.status(201).json(client);
+  });
+};
+
 // Get accounts for single client for an advisor
 exports.clientaccounts = function(req, res) {
   var userId = req.user._id;

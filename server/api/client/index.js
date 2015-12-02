@@ -10,6 +10,8 @@ var router = express.Router();
 router.get('/', auth.hasRole('admin'), controller.index);
 router.get('/myclients', auth.isAuthenticated(), controller.myclients);
 router.get('/myclients/:id', auth.isAuthenticated(), controller.myclient);
+router.delete('/myclients/:id', auth.isAuthenticated(), controller.deletemyclient);
+router.post('/myclients/', auth.isAuthenticated(), controller.addmyclient);
 router.get('/myclients/:id/accounts', auth.isAuthenticated(), controller.clientaccounts );
 router.get('/myclients/:id/accounts/refresh', auth.isAuthenticated(), controller.clientaccountsrefresh );
 router.get('/myclients/:id/account/:accid', auth.isAuthenticated(), controller.clientaccount);

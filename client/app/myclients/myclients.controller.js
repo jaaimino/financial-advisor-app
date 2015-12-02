@@ -6,6 +6,7 @@ angular.module('finAdviseApp')
     // Use the User $resource to fetch all users
     $scope.getCurrentUser = Auth.getCurrentUser;
     $scope.clients = [];
+    $scope.newClient = {};
 
     $http.get('/api/clients/myclients').success(function(clients) {
       $scope.clients = clients;
@@ -18,6 +19,34 @@ angular.module('finAdviseApp')
     $scope.pageChanged = function() {
       $log.log('Page changed to: ' + $scope.currentPage);
     };
+
+    $scope.addClient = function(form){
+      if(form.$valid) {
+        var data = $scope.newClient;
+        data.advisor = $scope.getCurrentUser()._id;
+        $http.post('/api/clients/myclients/', data).success(function(client) {
+          $scope.clients.push(client);
+          $scope.clearClient();
+        }).error(function(err, data){
+          console.log(err);
+        });
+      }
+    }
+
+    $scope.clearClient = function(){
+      $scope.newClient = {};
+    }
+
+    $scope.deleteClient = function(client){
+      $http.delete('/api/clients/myclients/'+client._id).success(function(response) {
+        var index = $scope.clients.indexOf(client);
+        if (index > -1) {
+            $scope.clients.splice(index, 1);
+        }
+      }).error(function(err, data){
+        console.log(err);
+      });
+    }
 
     $scope.maxSize = 5;
     $scope.bigTotalItems = $scope.clients.length;
