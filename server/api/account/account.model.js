@@ -1,10 +1,10 @@
 /*
- * Model for client bank site accounts
- */
+* Model for client bank site accounts
+*/
 'use strict';
 
 var mongoose = require('mongoose'),
-    Schema = mongoose.Schema;
+Schema = mongoose.Schema;
 
 var AccountSchema = new Schema({
   client		  : { type: Schema.ObjectId, required: true },

@@ -20,9 +20,9 @@
           <h3>Description</h3>
           <p>{{account.description}}</p>
           <h3>Account Overview</h3>
-          <p>Total Cash Balance: <span ng-if="!client.total_cash_balance">N/A</span></p>
+          <p>Total Cash Balance: ${{account.total_balance}}</p>
           <p>Total Liability: <span ng-if="!client.total_cash_balance">N/A</span></p>
-          <p>Total Holdings Balance: <span ng-if="!client.total_cash_balance">N/A</span></p>
+          <p>Total Holdings Balance: ${{account.total_holdings}}</p>
         </div>
       </div>
       <div class="row">
@@ -108,6 +108,10 @@
                       <h5>Description</h5>
                       <p ng-if="!investmentaccount.description">None</p>
                       <p>{{investmentaccount.description}}</p>
+                      <h5>Type</h5>
+                      <p>{{investmentaccount.account_type}}</p>
+                      <h5>Balance</h5>
+                      <p>${{investmentaccount.balance}}</p>
                     </div>
                   </div>
                 </div>

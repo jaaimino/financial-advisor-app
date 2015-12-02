@@ -92,10 +92,22 @@ exports.clientaccount = function(req, res) {
       BasicAccount.find({account: accountId}, function(err, basicaccounts){
         if(err) { return handleError(res, err); }
         someaccount.basicaccounts = basicaccounts;
+        var totalBalance = 0;
+        for (var i=0;i<basicaccounts.length;i++){
+          var somebasicaccount = basicaccounts[i];
+          totalBalance += somebasicaccount.total_balance;
+        }
+        someaccount.total_balance = totalBalance;
         //Now investment accounts
         InvestmentAccount.find({account: accountId}, function(err, investmentaccounts){
           if(err) { return handleError(res, err); }
           someaccount.investmentaccounts = investmentaccounts;
+          var totalBalance = 0;
+          for (var i=0;i<investmentaccounts.length;i++){
+            var someinvestmentaccount = investmentaccounts[i];
+            totalBalance += someinvestmentaccount.balance;
+          }
+          someaccount.total_holdings = totalBalance;
           //Now loans
           Loan.find({account: accountId}, function(err, loans){
             if(err) { return handleError(res, err); }
