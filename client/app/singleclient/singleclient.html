@@ -38,11 +38,20 @@
           <h3>Accounts</h3>
           <ul class="list-group">
               <li class="list-group-item" ng-repeat="account in accounts | filter:asyncSelected | orderBy: 'name'">
-                  <a href="/myclients/{{client._id}}/account/{{account._id}}">
-                    <h4><strong>{{account.name}}</strong>
-                    <!--<span class="text-muted">#{{account.account_number}}</span>-->
-                    </h4>
-                  </a>
+                <div class="row">
+                  <div class="col-xs-10">
+                    <a href="/myclients/{{client._id}}/account/{{account._id}}">
+                      <h4><strong>{{account.name}}</strong>
+                      <!--<span class="text-muted">#{{account.account_number}}</span>-->
+                      </h4>
+                    </a>
+                  </div>
+                  <div class="col-xs-2">
+                    <button class="btn btn-danger pull-right" ng-click="deleteAccount(account)">
+                      <i class="glyphicon glyphicon-trash"></i>
+                    </button>
+                  </div>
+                </div>
               </li>
               <li class="list-group-item">
                 <div class="row">
@@ -53,14 +62,22 @@
                 <div class="row">
                   <div class="col-md-12">
                     <div collapse="!isCollapsed">
-                      <form class="form" name="form" ng-submit="addClient(form)" novalidate>
+                      <form class="form" style="margin-top:10px;" name="form" ng-submit="addAccount(form)" novalidate>
                         <div class="form-group">
                           <label>Name</label>
-                          <input type="text" name="name" class="form-control" ng-model="newClient.name" required>
+                          <input type="text" name="name" class="form-control" ng-model="newAccount.name" required>
                         </div>
                         <div class="form-group">
-                          <label>Email</label>
-                          <input type="email" name="email" class="form-control" ng-model="newClient.email" required>
+                          <label>Site URL</label>
+                          <input type="text" name="email" class="form-control" ng-model="newAccount.site" required>
+                        </div>
+                        <div class="form-group">
+                          <label>Username</label>
+                          <input type="text" name="username" class="form-control" ng-model="newAccount.username" required>
+                        </div>
+                        <div class="form-group">
+                          <label>Password</label>
+                          <input type="password" name="password" class="form-control" ng-model="newAccount.password" required>
                         </div>
                         <!-- Error handling -->
                         <div class="form-group has-error">

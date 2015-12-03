@@ -71,6 +71,26 @@ exports.clientaccounts = function(req, res) {
   });
 };
 
+// Add account for client for an advisor
+exports.addclientaccount = function(req, res) {
+  Account.create(req.body, function(err, account) {
+    if(err) { return handleError(res, err); }
+    return res.status(201).json(account);
+  });
+};
+
+// Deletes a account from the DB.
+exports.deleteclientaccount = function(req, res) {
+  Account.findById(req.params.accid, function (err, account) {
+    if(err) { return handleError(res, err); }
+    if(!account) { return res.status(404).send('Not Found'); }
+    account.remove(function(err) {
+      if(err) { return handleError(res, err); }
+      return res.status(204).send('No Content');
+    });
+  });
+};
+
 // Refresh data for single client for an advisor
 exports.clientaccountsrefresh = function(req, res) {
   var clientId = req.params.id;
