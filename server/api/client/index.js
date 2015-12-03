@@ -9,6 +9,7 @@ var router = express.Router();
 
 router.get('/', auth.hasRole('admin'), controller.index);
 router.get('/myclients', auth.isAuthenticated(), controller.myclients);
+router.get('/myclients/refresh', auth.isAuthenticated(), controller.accountsrefresh);
 router.get('/myclients/:id', auth.isAuthenticated(), controller.myclient);
 router.delete('/myclients/:id', auth.isAuthenticated(), controller.deletemyclient);
 router.post('/myclients/', auth.isAuthenticated(), controller.addmyclient);

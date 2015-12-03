@@ -29,6 +29,18 @@ exports.myclients = function(req, res) {
   });
 };
 
+// Refresh data for single client for an advisor
+exports.accountsrefresh = function(req, res) {
+  var url = 'http://localhost:8080/api/scrape/';
+  request(url, function (error, response, body) {
+    if (!error && response.statusCode === 200) {
+      return res.status(200).json(body);
+    } else {
+      return res.status(404).send('Not Found');
+    }
+  })
+};
+
 // Get single client for an advisor
 exports.myclient = function(req, res) {
   var userId = req.user._id;

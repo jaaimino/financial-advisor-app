@@ -23,6 +23,15 @@
             <i class="glyphicon glyphicon-remove"></i> No Results Found
           </div> <br/>
           <ul class="list-group">
+            <li class="list-group-item">
+              <div class="row">
+                <div class="col-md-12">
+                  <button class="btn btn-default btn-block" ng-click="refreshdata()">
+                    <i class="glyphicon glyphicon-repeat"></i> Refresh All Data
+                  </button>
+                </div>
+              </div>
+            </li>
             <li class="list-group-item" ng-repeat="client in clients | filter:asyncSelected | orderBy: 'name'">
               <div class="row">
                 <div class="col-xs-10">

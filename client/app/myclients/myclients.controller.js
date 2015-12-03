@@ -48,11 +48,11 @@ angular.module('finAdviseApp')
       });
     }
 
-    $scope.maxSize = 5;
-    $scope.bigTotalItems = $scope.clients.length;
-    $scope.bigCurrentPage = 1;
-
-    $scope.selected = undefined;
+    $scope.refreshdata = function(){
+      $http.get('/api/clients/myclients/refresh').success(function(accounts) {
+        //console.log(accounts);
+      });
+    };
 
     /*
     $scope.delete = function(user) {
