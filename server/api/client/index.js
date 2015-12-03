@@ -20,7 +20,8 @@ router.get('/myclients/:id/account/:accid', auth.isAuthenticated(), controller.c
 router.delete('/myclients/:id/account/:accid', auth.isAuthenticated(), controller.deleteclientaccount);
 router.get('/myclients/:id/account/:accid/refresh', auth.isAuthenticated(), controller.clientaccountrefresh);
 router.get('/myclients/:id/account/:accid/subaccounts', auth.isAuthenticated(), controller.clientaccount);
-router.get('/myclients/:id/account/:accid/subaccount/:subid', auth.isAuthenticated(), controller.clientaccountsubaccount);
+router.get('/myclients/:id/account/:accid/basic/:subid', auth.isAuthenticated(), controller.clientbasicaccount);
+router.get('/myclients/:id/account/:accid/investment/:subid', auth.isAuthenticated(), controller.clientinvestment);
 router.get('/:id', auth.isAuthenticated(), controller.show);
 router.post('/', auth.isAuthenticated(), controller.create);
 router.put('/:id', auth.isAuthenticated(), controller.update);

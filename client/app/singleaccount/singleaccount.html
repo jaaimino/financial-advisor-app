@@ -40,7 +40,7 @@
                     </h4>
                   </div>
                   <div class="col-xs-4">
-                    <button class="btn btn-primary pull-right" ng-click="getSubAccountDetails(basicaccount, isCollapsed); isCollapsed = !isCollapsed">Details</button>
+                    <button class="btn btn-primary pull-right" ng-click="getBasicAccountDetails(basicaccount, isCollapsed); isCollapsed = !isCollapsed">Details</button>
                   </div>
                 </div>
                 <div class="row">
@@ -97,7 +97,7 @@
                     </h4>
                   </div>
                   <div class="col-xs-4">
-                    <button class="btn btn-primary pull-right" ng-click="isCollapsed = !isCollapsed">Details</button>
+                    <button class="btn btn-primary pull-right" ng-click="getInvestmentDetails(investmentaccount, isCollapsed); isCollapsed = !isCollapsed">Details</button>
                   </div>
                 </div>
                 <div class="row">
@@ -111,9 +111,34 @@
                       <p>{{investmentaccount.account_type}}</p>
                       <h5>Balance</h5>
                       <p>${{investmentaccount.balance}}</p>
+                      <div ng-if="0 < investmentaccount.holdings.length">
+                        <h5>Transactions</h5>
+                        <table class="table table-bordered">
+                          <tr>
+                            <th>Date</th>
+                            <th>Description</th>
+                            <th>Amount</th>
+                            <th>Currency Codes</th>
+                            <th>Merchant Name</th>
+                            <th>Merchant Category</th>
+                          </tr>
+                          <tr ng-repeat="holding in investmentaccount.holdings | orderBy: 'added'">
+                            <td>{{holding.added | date : format : timezone}}</td>
+                            <td>{{holding.description}}</td>
+                            <td>
+                              <!-- Need the negative sign if it's negative -->
+                              <span ng-if="!transaction.positive">-</span>${{holding.amount}}
+                            </td>
+                            <td>{{holding.currency_codes}}</td>
+                            <td>{{holding.merchant_name}}</td>
+                            <td>{{holding.merchant_category}}</td>
+                          </tr>
+                        </table>
+                      </div>
                     </div>
                   </div>
                 </div>
+
               </li>
             </ul>
           </div>

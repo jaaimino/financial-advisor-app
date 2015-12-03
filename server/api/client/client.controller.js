@@ -6,6 +6,7 @@ var Account = require('../account/account.model');
 var BasicAccount = require('../basicaccount/basicaccount.model');
 var BankTransaction = require('../banktransaction/banktransaction.model');
 var InvestmentAccount = require('../investmentaccount/investmentaccount.model');
+var Holdings = require('../holdings/holdings.model');
 var Loan = require('../loan/loan.model');
 var passport = require('passport');
 var config = require('../../config/environment');
@@ -180,7 +181,7 @@ exports.clientaccount = function(req, res) {
 };
 
 // Get single account and sub accounts for single client for an advisor
-exports.clientaccountsubaccount = function(req, res) {
+exports.clientbasicaccount = function(req, res) {
   var userId = req.user._id;
   var accountId = req.params.accid;
   var subaccountId = req.params.subid;
@@ -192,6 +193,24 @@ exports.clientaccountsubaccount = function(req, res) {
       if(err) { return handleError(res, err); }
       basicaccount.transactions = banktransactions;
       return res.status(200).json(basicaccount);
+    });
+  });
+};
+
+// Get single account and sub accounts for single client for an advisor
+exports.clientinvestment = function(req, res) {
+  var userId = req.user._id;
+  var accountId = req.params.accid;
+  var subaccountId = req.params.subid;
+  //Find client first
+  InvestmentAccount.findOne({_id: subaccountId}, function(err, investment){
+    if(err) { return handleError(res, err); }
+    if(!investment){ return res.status(404).send('Not Found'); }
+    investment = investment.toObject();
+    Holdings.find({account: subaccountId}, function(err, holdings){
+      if(err) { return handleError(res, err); }
+      investment.holdings = holdings;
+      return res.status(200).json(investment);
     });
   });
 };

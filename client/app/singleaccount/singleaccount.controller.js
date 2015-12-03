@@ -23,11 +23,21 @@ angular.module('finAdviseApp')
       });
     };
 
-    $scope.getSubAccountDetails = function(subaccount, collapsed){
+    $scope.getBasicAccountDetails = function(subaccount, collapsed){
       if(!collapsed){
         $http.get('/api/clients/myclients/' + clientId + '/account/' +
-          accountId + '/subaccount/' + subaccount._id).success(function(detailsubaccount) {
+          accountId + '/basic/' + subaccount._id).success(function(detailsubaccount) {
             subaccount.transactions = detailsubaccount.transactions;
+        });
+      }
+    };
+
+    $scope.getInvestmentDetails = function(subaccount, collapsed){
+      if(!collapsed){
+        $http.get('/api/clients/myclients/' + clientId + '/account/' +
+          accountId + '/investment/' + subaccount._id).success(function(detailsubaccount) {
+            console.log(detailsubaccount.holdings);
+            subaccount.holdings = detailsubaccount.holdings;
         });
       }
     };
