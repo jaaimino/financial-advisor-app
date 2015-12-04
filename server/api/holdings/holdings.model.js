@@ -7,14 +7,14 @@ var mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 
 var HoldingsSchema = new Schema({
-  account              : { type: Schema.ObjectId, required: true },
-  ticker        : {type: String},
-  cusip         : {type: String},
-  description   : {type: String},
-  units         : {type: Number},
-  price         : {type: Number},
-  cost_basis    : {type: Number},
-  aquired       : {type: Date},
+  account       : { type: Schema.ObjectId, required: true },
+  ticker        : {type: String, required: false},
+  cusip         : {type: String, required: false},
+  description   : {type: String, required: false},
+  units         : {type: Number, required: false},
+  price         : {type: Number, required: false},
+  cost_basis    : {type: Number, required: false},
+  acquired       : {type: Date, required: false, default: Date.now},
 });
 
 module.exports = mongoose.model('Holdings', HoldingsSchema);

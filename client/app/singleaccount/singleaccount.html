@@ -112,26 +112,25 @@
                       <h5>Balance</h5>
                       <p>${{investmentaccount.balance}}</p>
                       <div ng-if="0 < investmentaccount.holdings.length">
-                        <h5>Transactions</h5>
+                        <h5>Holdings</h5>
                         <table class="table table-bordered">
                           <tr>
-                            <th>Date</th>
+                            <th>Ticker</th>
+                            <th>CUSIP</th>
                             <th>Description</th>
-                            <th>Amount</th>
-                            <th>Currency Codes</th>
-                            <th>Merchant Name</th>
-                            <th>Merchant Category</th>
+                            <th>Units</th>
+                            <th>Price</th>
+                            <th>Cost Basis</th>
+                            <th>Acquired Date</th>
                           </tr>
-                          <tr ng-repeat="holding in investmentaccount.holdings | orderBy: 'added'">
-                            <td>{{holding.added | date : format : timezone}}</td>
+                          <tr ng-repeat="holding in investmentaccount.holdings | orderBy: 'acquired'">
+                            <td>{{holding.ticker}}</td>
+                            <td>{{holding.cusip}}</td>
                             <td>{{holding.description}}</td>
-                            <td>
-                              <!-- Need the negative sign if it's negative -->
-                              <span ng-if="!transaction.positive">-</span>${{holding.amount}}
-                            </td>
-                            <td>{{holding.currency_codes}}</td>
-                            <td>{{holding.merchant_name}}</td>
-                            <td>{{holding.merchant_category}}</td>
+                            <td>{{holding.units}}</td>
+                            <td>{{holding.price}}</td>
+                            <td>{{holding.cost_basis}}</td>
+                            <td>{{holding.acquired | date : format : timezone}}</td>
                           </tr>
                         </table>
                       </div>
