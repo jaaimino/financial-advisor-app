@@ -7,17 +7,17 @@ angular.module('finAdviseApp')
     $scope.getCurrentUser = Auth.getCurrentUser;
     $scope.clients = [];
     $scope.newClient = {};
+    $scope.btnColor = "btn-default";
 
     $http.get('/api/clients/myclients').success(function(clients) {
       $scope.clients = clients;
     });
 
-    $scope.setPage = function (pageNo) {
-      $scope.currentPage = pageNo;
-    };
-
-    $scope.pageChanged = function() {
-      $log.log('Page changed to: ' + $scope.currentPage);
+    $scope.refreshdata = function(){
+      $scope.btnColor = "btn-warning";
+      $http.get('/api/clients/myclients/refresh').success(function(accounts) {
+        $scope.btnColor = "btn-success";
+      });
     };
 
     $scope.addClient = function(form){
@@ -47,21 +47,4 @@ angular.module('finAdviseApp')
         console.log(err);
       });
     }
-
-    $scope.refreshdata = function(){
-      $http.get('/api/clients/myclients/refresh').success(function(accounts) {
-        //console.log(accounts);
-      });
-    };
-
-    /*
-    $scope.delete = function(user) {
-      User.remove({ id: user._id });
-      angular.forEach($scope.users, function(u, i) {
-        if (u === user) {
-          $scope.users.splice(i, 1);
-        }
-      });
-    };
-    */
   });

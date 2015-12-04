@@ -6,6 +6,7 @@ angular.module('finAdviseApp')
     $scope.client = {};
     $scope.accounts = [];
     $scope.newAccount = {};
+    $scope.btnColor = "btn-default";
 
     $http.get('/api/clients/myclients/' + clientId).success(function(client) {
       $scope.client = client;
@@ -16,7 +17,9 @@ angular.module('finAdviseApp')
     });
 
     $scope.refreshdata = function(){
+      $scope.btnColor = "btn-warning";
       $http.get('/api/clients/myclients/' + clientId + '/accounts/refresh').success(function(accounts) {
+      $scope.btnColor = "btn-success";
         //console.log(accounts);
       });
     };
