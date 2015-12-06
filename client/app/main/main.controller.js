@@ -2,7 +2,7 @@
 
 angular.module('finAdviseApp')
   .controller('MainCtrl', function ($scope, $http, Auth) {
-    
+
     // Use the User $resource to fetch all users
     $scope.getCurrentUser = Auth.getCurrentUser;
     $scope.clients = [];
@@ -22,4 +22,7 @@ angular.module('finAdviseApp')
     $scope.onClick = function (points, evt) {
       console.log(points, evt);
     };
+
+    $scope.labels2 = ["Basic", "Investment", "Loan"];
+    $scope.data2 = [10, 4, 6];
   });
